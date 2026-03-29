@@ -1,0 +1,151 @@
+/* styles/pages/profile.css */
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   PROFILE HEADER
+━━━━━━━━━━━━━━━━━━━━━ */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-md);
+  background: linear-gradient(135deg, rgba(0,255,135,0.05), rgba(127,255,0,0.02));
+  border-color: rgba(0,255,135,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.profile-header::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0,255,135,0.07) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.profile-info { flex: 1; }
+.prof-name-row { display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; }
+
+@media (max-width: 600px) {
+  .profile-header { flex-direction: column; text-align: center; }
+  .prof-name-row { justify-content: center; }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   LEVEL & XP BAR
+━━━━━━━━━━━━━━━━━━━━━ */
+.xp-section {
+  margin-top: var(--space-md);
+}
+.xp-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-xs);
+}
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(255,176,32,0.2), rgba(255,74,106,0.1));
+  border: 1px solid rgba(255,176,32,0.3);
+  color: var(--warning);
+  font-weight: 700;
+  font-size: 0.85rem;
+  font-family: var(--font-display);
+  box-shadow: 0 0 16px rgba(255,176,32,0.12);
+}
+.xp-bar {
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.xp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--warning), #FF8C00);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 12px rgba(255,176,32,0.3);
+  animation: progressFill 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.xp-text { font-size: 0.78rem; color: var(--text-muted); margin-top: var(--space-xs); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   IMPACT EQUIVALENTS
+━━━━━━━━━━━━━━━━━━━━━ */
+.impact-eq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+@media (max-width: 600px) {
+  .impact-eq-grid { grid-template-columns: 1fr; }
+}
+.impact-eq-card {
+  text-align: center;
+  padding: var(--space-lg);
+}
+.impact-eq-icon { font-size: 2.2rem; margin-bottom: var(--space-sm); }
+.impact-eq-value {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+.impact-eq-label { font-size: 0.8rem; color: var(--text-muted); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   BADGES GRID
+━━━━━━━━━━━━━━━━━━━━━ */
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+.badge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radius-lg);
+  border: var(--border-glass);
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.badge-item:hover:not(.locked) {
+  border-color: rgba(0,255,135,0.2);
+  background: rgba(0,255,135,0.05);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,255,135,0.08);
+}
+.badge-item.locked {
+  opacity: 0.4;
+  filter: grayscale(1);
+}
+.badge-icon { font-size: 2rem; }
+.badge-item strong { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   SETTINGS SECTION
+━━━━━━━━━━━━━━━━━━━━━ */
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) 0;
+  border-bottom: var(--border-glass);
+}
+.settings-row:last-child { border-bottom: none; }
+.settings-label { font-weight: 600; font-size: 0.95rem; }
+.settings-desc { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }

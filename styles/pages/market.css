@@ -1,0 +1,100 @@
+/* styles/pages/market.css */
+
+/* Product grid is now defined in components.css (shared) */
+/* Market-specific overrides below */
+
+.product-image {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+    transition: transform 0.4s ease;
+}
+.glass-card:hover .product-image {
+    transform: scale(1.04);
+}
+
+.product-price {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--primary);
+}
+
+/* Cart Sidebar */
+.cart-sidebar-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 360px;
+    height: 100vh;
+    z-index: 500;
+    background: rgba(8, 14, 10, 0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-left: var(--border-glass);
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: -20px 0 60px rgba(0,0,0,0.5);
+}
+.cart-sidebar-overlay.open {
+    transform: translateX(0);
+}
+
+@media (max-width: 600px) {
+    .cart-sidebar-overlay {
+        width: 100%;
+    }
+}
+
+/* Cart Item Rows */
+.cart-item-row {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+    background: rgba(255,255,255,0.04);
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    border: var(--border-glass);
+    animation: slideInRight 0.25s ease both;
+}
+.cart-item-img {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+}
+.filter-chip {
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-full);
+    background: rgba(255,255,255,0.04);
+    border: var(--border-glass);
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+}
+.filter-chip:hover, .filter-chip.active {
+    background: var(--primary-subtle);
+    color: var(--primary);
+    border-color: rgba(0,255,135,0.25);
+}
+.filter-chip:active { transform: scale(0.95); }

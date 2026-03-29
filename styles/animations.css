@@ -1,0 +1,247 @@
+/* styles/animations.css */
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PAGE ENTRY & TRANSITIONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.page-entry {
+    animation: pageIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: opacity, transform;
+}
+
+.page-exit {
+    animation: pageOut 0.25s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes pageIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.985); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+@keyframes pageOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to { opacity: 0; transform: translateY(-8px) scale(0.98); filter: blur(2px); }
+}
+
+.glass-fade {
+  animation: glassFadeEffect 0.8s ease both;
+}
+
+@keyframes glassFadeEffect {
+  0%   { opacity: 0; backdrop-filter: blur(0px); border: 1px solid rgba(255,255,255,0); }
+  100% { opacity: 1; backdrop-filter: blur(12px); border: var(--border-glass); }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ECO-THEMED ANIMATIONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* leaf-sway: Gentle rotation */
+.leaf-sway {
+  animation: leafSwayEffect 3s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+@keyframes leafSwayEffect {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(4deg); }
+  50%  { transform: rotate(-3deg); }
+  75%  { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* water-ripple: Expanding pulse */
+.water-ripple {
+  position: relative;
+}
+.water-ripple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid var(--primary);
+  animation: waterRippleEffect 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+@keyframes waterRippleEffect {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* breeze-float: Floating movement */
+.breeze-float {
+  animation: breezeFloatEffect 4s ease-in-out infinite;
+}
+@keyframes breezeFloatEffect {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+/* earth-pulse: Deep rhythmic pulse */
+.earth-pulse {
+  animation: earthPulseEffect 3s ease-in-out infinite;
+}
+@keyframes earthPulseEffect {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--primary-glow)); }
+  50%       { transform: scale(1.03); filter: drop-shadow(0 0 15px var(--primary-glow)); }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BUTTON & INTERACTION ANIMATIONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* hover-lift: Premium shadow & lift */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.3), 0 0 12px var(--primary-subtle);
+}
+
+/* tap-scale: Response to click */
+.tap-scale {
+  transition: transform 0.1s ease;
+}
+.tap-scale:active {
+  transform: scale(0.94);
+}
+
+/* glow-pulse: Neon intensity */
+.glow-pulse {
+  animation: glowPulseEffect 2.5s ease-in-out infinite;
+}
+@keyframes glowPulseEffect {
+  0%, 100% { filter: drop-shadow(0 0 4px var(--primary-glow)); opacity: 0.8; }
+  50%       { filter: drop-shadow(0 0 12px var(--primary-glow)); opacity: 1; }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DASHBOARD & STATS ANIMATIONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* staggered-fade: Sequential entry */
+.staggered-fade {
+  opacity: 0;
+  animation: staggeredFadeEffect 0.5s ease forwards;
+}
+.staggered-fade:nth-child(1) { animation-delay: 0.1s; }
+.staggered-fade:nth-child(2) { animation-delay: 0.2s; }
+.staggered-fade:nth-child(3) { animation-delay: 0.3s; }
+.staggered-fade:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes staggeredFadeEffect {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* progress-grow: Bar expansion */
+.progress-grow {
+  width: 0;
+  animation: progressGrowEffect 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes progressGrowEffect {
+  from { width: 0; }
+  to   { width: var(--final-width, 100%); }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   EXISTING CORE ANIMATIONS (Preserved/Updated)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.spin { animation: spinEffect 1s linear infinite; }
+@keyframes spinEffect { 100% { transform: rotate(360deg); } }
+
+.pulse { animation: pulseEffect 2s infinite; }
+@keyframes pulseEffect { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+@keyframes navIndicatorSlide {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+@keyframes toastIn {
+  from { transform: translateX(110%) scale(0.9); opacity: 0; }
+  to   { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GAMIFICATION & REWARDS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.points-fly-premium {
+    position: fixed;
+    z-index: 10000;
+    pointer-events: none;
+    color: var(--primary);
+    font-weight: 900;
+    font-size: 1.25rem;
+    font-family: var(--font-mono);
+    text-shadow: 0 0 10px var(--primary-glow);
+    animation: pointsFlyUp 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+@keyframes pointsFlyUp {
+    0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+    15%  { opacity: 1; transform: translateY(-20px) scale(1.2); }
+    80%  { opacity: 1; transform: translateY(-80px) scale(1); }
+    100% { opacity: 0; transform: translateY(-120px) scale(0.8); }
+}
+
+.achievement-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(6, 10, 7, 0.92);
+    backdrop-filter: blur(24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.achievement-overlay.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.achievement-card {
+    max-width: 480px;
+    padding: var(--space-2xl);
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(0,255,135,0.1);
+}
+
+.achievement-icon-wrapper {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.achievement-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.achievement-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-top: var(--space-md);
+}
+
+.achievement-glow {
+    position: absolute;
+    inset: 0;
+    filter: blur(120px);
+    z-index: -1;
+    border-radius: 50%;
+}

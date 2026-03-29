@@ -1,0 +1,104 @@
+/* styles/pages/carbon.css */
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   RESULT GRID
+━━━━━━━━━━━━━━━━━━━━━ */
+.carbon-result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+@media (max-width: 600px) {
+  .carbon-result-grid { grid-template-columns: 1fr; }
+}
+
+.big-number-card {
+  text-align: center;
+  padding: var(--space-xl);
+}
+.big-co2 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 3.5rem;
+  letter-spacing: -0.04em;
+  color: var(--error);
+  text-shadow: 0 0 30px rgba(255,74,106,0.3);
+  line-height: 1;
+  margin: var(--space-sm) 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   CHART CONTAINER
+━━━━━━━━━━━━━━━━━━━━━ */
+.carbon-chart-wrapper {
+  position: relative;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   AI TIPS
+━━━━━━━━━━━━━━━━━━━━━ */
+.ai-tip-item {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+  padding: var(--space-sm) 0;
+  border-bottom: var(--border-glass);
+  animation: slideInUp 0.3s ease both;
+}
+.ai-tip-item:last-child { border-bottom: none; }
+.ai-tip-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(0,255,135,0.08);
+  font-size: 1rem;
+  color: var(--primary);
+}
+.ai-tip-icon .material-symbols-outlined { font-size: 1.1rem; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   HISTORY CHART
+━━━━━━━━━━━━━━━━━━━━━ */
+.history-chart-wrap {
+  position: relative;
+  height: 180px;
+  margin-top: var(--space-md);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   COMPARISON BAR
+━━━━━━━━━━━━━━━━━━━━━ */
+.compare-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+.compare-label { font-size: 0.85rem; color: var(--text-muted); width: 100px; flex-shrink: 0; }
+.compare-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.compare-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  animation: progressFill 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.compare-value { font-size: 0.85rem; font-family: var(--font-mono); font-weight: 700; width: 60px; text-align: right; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   SPIN (loader)
+━━━━━━━━━━━━━━━━━━━━━ */
+.spin { animation: spin 1s linear infinite; display: inline-block; }

@@ -1,0 +1,153 @@
+/* styles/pages/dashboard.css */
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   BENTO GRID
+━━━━━━━━━━━━━━━━━━━━━ */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+.bento-hero {
+  grid-column: span 2;
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(145deg, rgba(0,255,135,0.06) 0%, rgba(127,255,0,0.03) 100%);
+  border-color: rgba(0,255,135,0.12);
+  position: relative;
+  overflow: hidden;
+}
+.bento-hero::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(0,255,135,0.15), transparent, rgba(127,255,0,0.1));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.bento-hero:hover::before { opacity: 1; }
+
+.bento-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--space-xs);
+}
+
+.bento-actions {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+.bento-actions .btn {
+  height: 100%;
+  flex-direction: column;
+  padding: var(--space-xl) var(--space-md);
+  font-size: 1rem;
+  min-height: 100px;
+  border-radius: var(--radius-lg);
+}
+.bento-actions .material-symbols-outlined {
+  font-size: 2rem;
+  margin-bottom: var(--space-xs);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   KPI CARDS
+━━━━━━━━━━━━━━━━━━━━━ */
+.kpi-value {
+  font-size: 2.4rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  line-height: 1;
+  margin: var(--space-sm) 0 var(--space-xs);
+  letter-spacing: -0.04em;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   SPARKLINE CHART AREA
+━━━━━━━━━━━━━━━━━━━━━ */
+.sparkline-area {
+  grid-column: span 4;
+  padding: var(--space-lg);
+}
+.chart-wrapper {
+  position: relative;
+  height: 180px;
+  margin-top: var(--space-md);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   FEED LIST
+━━━━━━━━━━━━━━━━━━━━━ */
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.feed-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  transition: background 0.2s ease;
+  animation: slideInUp 0.35s ease both;
+}
+.feed-item:hover { background: rgba(255,255,255,0.03); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   ECO TIP CARD
+━━━━━━━━━━━━━━━━━━━━━ */
+.eco-tip-card {
+  grid-column: span 4;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: linear-gradient(135deg, rgba(0,255,135,0.07), rgba(127,255,0,0.04));
+  border: var(--border-neon);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+}
+.eco-tip-icon {
+  font-size: 2rem;
+  color: var(--primary);
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px var(--primary-glow));
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   CHALLENGE CARD
+━━━━━━━━━━━━━━━━━━━━━ */
+.challenge-card {
+  grid-column: span 2;
+  background: linear-gradient(135deg, rgba(255,176,32,0.06), rgba(255,74,106,0.03));
+  border-color: rgba(255,176,32,0.12);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE
+━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 1024px) {
+  .bento-grid { grid-template-columns: 1fr 1fr; }
+  .bento-hero  { grid-column: span 2; }
+  .sparkline-area { grid-column: span 2; }
+  .eco-tip-card   { grid-column: span 2; }
+  .challenge-card { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+  .bento-grid { grid-template-columns: 1fr; }
+  .bento-hero, .bento-actions, .sparkline-area, .eco-tip-card, .challenge-card {
+    grid-column: span 1;
+  }
+  .bento-actions { grid-template-columns: 1fr 1fr; }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "greentrack",
+  "version": "1.0.0",
+  "description": "Sustainable Living & Eco-Community Platform",
+  "type": "module",
+  "scripts": {
+    "serve": "npx serve ."
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
+}
