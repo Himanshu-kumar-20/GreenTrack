@@ -1,4 +1,7 @@
 // js/firebase.js
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+import CONFIG from '../config.js';
 import { getLevel } from './utils.js';
 import { showAchievementModal } from './components.js';
 
@@ -78,9 +81,19 @@ class MockDB {
 
 export const firebaseDB = new MockDB();
 
-// Mock Auth logic
+// Initialize Firebase App
+let app, firebaseAuth, googleProvider;
+try {
+    app = initializeApp(CONFIG.FIREBASE);
+    firebaseAuth = getAuth(app);
+    googleProvider = new GoogleAuthProvider();
+} catch (error) {
+    console.warn("Firebase initialization failed, check your config.js:", error);
+}
+
+// Ensure local fallback auth state matches our mock / fallback demo
 export const auth = {
-    currentUser: JSON.parse(localStorage.getItem('greentrack_user')) || firebaseDB.store.users['demo_user']
+    currentUser: JSON.parse(localStorage.getItem('greentrack_user')) || null
 };
 
 export let currentUser = auth.currentUser;
@@ -96,10 +109,48 @@ export const setAuthUser = (user) => {
     window.dispatchEvent(new CustomEvent('auth-state-changed', { detail: user }));
 };
 
-// Auto-initialize auth state
-setTimeout(() => {
-    window.dispatchEvent(new CustomEvent('auth-state-changed', { detail: auth.currentUser }));
-}, 100);
+// If real firebase auth is hooked up, sync it
+if (firebaseAuth) {
+    onAuthStateChanged(firebaseAuth, (user) => {
+        if (user) {
+            // Check if user already in mockDB, else create
+            const mappedUser = {
+                uid: user.uid,
+                displayName: user.displayName || 'Google User',
+                email: user.email,
+                photoURL: user.photoURL,
+                points: user.points || 0,
+                isAnonymous: false
+            };
+            setAuthUser(mappedUser);
+        } else {
+            // Only drop auth if it wasn't a local demo user
+            if(currentUser && currentUser.uid !== 'demo_user') {
+                 setAuthUser(null);
+            }
+        }
+    });
+} else {
+    // Auto-initialize mock auth state
+    setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('auth-state-changed', { detail: auth.currentUser }));
+    }, 100);
+}
+
+export const signInWithGoogleFirebase = async () => {
+    if(!firebaseAuth) {
+        throw new Error("Firebase not initialized. Check config.js");
+    }
+    const result = await signInWithPopup(firebaseAuth, googleProvider);
+    return result.user;
+};
+
+export const signOutFirebase = async () => {
+    if(firebaseAuth) {
+        await signOut(firebaseAuth);
+    }
+    setAuthUser(null);
+};
 
 // ─── Gamification Helper ──────────────────────────────────
 export const addEcoPoints = async (amount) => {

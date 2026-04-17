@@ -22,60 +22,60 @@ const MOCK_TASKS = [
 
 export const initCommunity = async (container) => {
     container.innerHTML = `
-        <div class="page-entry">
+        <div>
             <!-- Community Banner -->
-            <div class="community-header staggered-fade" style="background-image:url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1200');">
+            <div class="community-header" style="background-image:url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1200'); background-size:cover; background-position:center; padding:var(--space-2xl) var(--space-xl); border-radius:var(--radius-lg); margin-bottom:var(--space-xl);">
                 <div class="community-title">
-                    <span class="badge badge-green glow-pulse" style="margin-bottom:var(--space-sm);">Zero Waste Club</span>
+                    <span class="badge badge-green" style="margin-bottom:var(--space-sm);">Zero Waste Club</span>
                     <h2 style="font-size:2.2rem; text-shadow:0 2px 16px rgba(0,0,0,0.9);">Bangalore Central</h2>
                     <div class="flex items-center gap-sm" style="margin-top:var(--space-sm);">
-                        <span class="material-symbols-outlined text-muted leaf-sway" style="font-size:1.1rem;">group</span>
+                        <span class="material-symbols-outlined text-muted" style="font-size:1.1rem;">group</span>
                         <span class="text-muted" style="font-size:0.9rem;"><strong id="member-count">0</strong> Members</span>
                         <span style="margin:0 6px; color:var(--text-muted);">·</span>
-                        <span class="badge badge-green glow-pulse">🟢 Active</span>
+                        <span class="badge badge-green">🟢 Active</span>
                     </div>
                 </div>
             </div>
 
             <!-- Community Stats Bar -->
-            <div class="community-stats-bar staggered-fade">
-                <div class="c-stat hover-lift">
-                    <span class="material-symbols-outlined c-stat-icon leaf-sway">co2</span>
+            <div class="community-stats-bar" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:var(--space-md); margin-bottom:var(--space-xl);">
+                <div class="glass-card" style="display:flex; align-items:center; gap:var(--space-md);">
+                    <span class="material-symbols-outlined" style="font-size:2rem; color:var(--primary);">co2</span>
                     <div>
-                        <div class="c-stat-value count-up" id="stat-co2">0</div>
-                        <div class="c-stat-label">kg CO₂ Saved</div>
+                        <div class="c-stat-value count-up" id="stat-co2" style="font-size:1.5rem; font-weight:700;">0</div>
+                        <div class="c-stat-label text-muted" style="font-size:0.8rem;">kg CO₂ Saved</div>
                     </div>
                 </div>
-                <div class="c-stat hover-lift">
-                    <span class="material-symbols-outlined c-stat-icon breeze-float">recycling</span>
+                <div class="glass-card" style="display:flex; align-items:center; gap:var(--space-md);">
+                    <span class="material-symbols-outlined" style="font-size:2rem; color:var(--info);">recycling</span>
                     <div>
-                        <div class="c-stat-value count-up" id="stat-items">0</div>
-                        <div class="c-stat-label">Items Recycled</div>
+                        <div class="c-stat-value count-up" id="stat-items" style="font-size:1.5rem; font-weight:700;">0</div>
+                        <div class="c-stat-label text-muted" style="font-size:0.8rem;">Items Recycled</div>
                     </div>
                 </div>
-                <div class="c-stat hover-lift">
-                    <span class="material-symbols-outlined c-stat-icon glow-pulse">workspace_premium</span>
+                <div class="glass-card" style="display:flex; align-items:center; gap:var(--space-md);">
+                    <span class="material-symbols-outlined" style="font-size:2rem; color:var(--warning);">workspace_premium</span>
                     <div>
-                        <div class="c-stat-value count-up" id="stat-pts">0</div>
-                        <div class="c-stat-label">Total Eco Points</div>
+                        <div class="c-stat-value count-up" id="stat-pts" style="font-size:1.5rem; font-weight:700;">0</div>
+                        <div class="c-stat-label text-muted" style="font-size:0.8rem;">Total Eco Points</div>
                     </div>
                 </div>
             </div>
 
             <!-- Tab Nav -->
-            <div class="c-tabs staggered-fade">
-                <span class="c-tab active tap-scale" data-tab="feed">
-                    <span class="material-symbols-outlined breeze-float" style="font-size:1rem; vertical-align:middle; margin-right:4px;">forum</span>Feed
+            <div class="c-tabs" style="display:flex; gap:var(--space-md); border-bottom:var(--border-glass); margin-bottom:var(--space-lg); padding-bottom:var(--space-sm);">
+                <span class="c-tab active" data-tab="feed" style="cursor:pointer; font-weight:600;">
+                    <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle; margin-right:4px;">forum</span>Community Feed
                 </span>
-                <span class="c-tab tap-scale" data-tab="tasks">
-                    <span class="material-symbols-outlined leaf-sway" style="font-size:1rem; vertical-align:middle; margin-right:4px;">task_alt</span>Tasks
+                <span class="c-tab" data-tab="tasks" style="cursor:pointer;">
+                    <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle; margin-right:4px;">task_alt</span>Group Tasks
                 </span>
-                <span class="c-tab tap-scale" data-tab="leaderboard">
-                    <span class="material-symbols-outlined glow-pulse" style="font-size:1rem; vertical-align:middle; margin-right:4px;">leaderboard</span>Leaderboard
+                <span class="c-tab" data-tab="leaderboard" style="cursor:pointer;">
+                    <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle; margin-right:4px;">leaderboard</span>Leaderboard
                 </span>
             </div>
 
-            <div id="tab-content" class="staggered-fade glass-fade"></div>
+            <div id="tab-content"></div>
         </div>
     `;
 
@@ -90,20 +90,20 @@ export const initCommunity = async (container) => {
     // ── Feed ─────────────────────────────────────────────
     const renderFeed = async () => {
         tabContent.innerHTML = `
-            <div class="glass-card staggered-fade hover-lift" style="margin-bottom:var(--space-md); border-color:rgba(0,255,135,0.1);">
+            <div class="glass-card" style="margin-bottom:var(--space-xl); border-color:rgba(0,255,135,0.1);">
                 <div class="flex items-center gap-md">
-                    <div class="avatar avatar-sm breeze-float">${currentUser?.displayName?.[0] || 'U'}</div>
+                    <div class="avatar avatar-sm">${currentUser?.displayName?.[0] || 'U'}</div>
                     <input id="feed-input" type="text" class="input-field"
                         style="margin:0; flex:1; background:transparent; border:none; border-bottom:1px solid rgba(255,255,255,0.08); border-radius:0; padding: 0.5rem 0;"
-                        placeholder="Share your eco-win... 🌿">
-                    <button class="btn btn-primary btn-sm hover-lift tap-scale" id="btn-post">
-                        <span class="material-symbols-outlined">send</span>Post
+                        placeholder="Share your latest eco-win with the community... 🌿">
+                    <button class="btn btn-primary btn-sm" id="btn-post" style="border-radius: var(--radius-full); padding: 0.5rem 1.5rem;">
+                        Post Activity
                     </button>
                 </div>
             </div>
 
-            <div class="feed-list" id="community-feed">
-                <div class="flex justify-center p-xl">
+            <div class="feed-grid" id="community-feed" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:var(--space-md);">
+                <div class="flex justify-center p-xl" style="grid-column:1/-1;">
                     <span class="material-symbols-outlined spin">sync</span>
                 </div>
             </div>
@@ -115,25 +115,32 @@ export const initCommunity = async (container) => {
             const posts = await firebaseDB.getCollection('posts', [orderBy('timestamp', 'desc'), limit(20)]);
 
             if (posts.length === 0) {
-                feedList.innerHTML = `<p class="text-muted text-center p-xl">No posts yet. Be the first to share your eco-win! 🌿</p>`;
+                feedList.innerHTML = `<p class="text-muted text-center p-xl" style="grid-column:1/-1;">No posts yet. Be the first to share your eco-win! 🌿</p>`;
             } else {
                 feedList.innerHTML = posts.map((post, i) => `
-                    <div class="chat-msg ${post.userId === currentUser?.uid ? 'mine' : ''} staggered-fade hover-lift">
-                        <div class="avatar avatar-sm breeze-float" style="align-self:flex-end;">${(post.authorName || 'U')[0]}</div>
-                        <div class="chat-bubble">
-                            <strong style="display:block; margin-bottom:4px; font-size:0.82rem; color:${post.userId === currentUser?.uid ? 'var(--primary)' : 'var(--text-muted)'};">
-                                ${post.userId === currentUser?.uid ? 'You' : post.authorName}
-                            </strong>
-                            ${post.content}
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:var(--space-sm);">
-                                <button class="like-btn tap-scale" data-post-id="${post.id}">
-                                    <span class="material-symbols-outlined" style="font-size:1rem;">favorite</span>
-                                    <span class="like-count">${post.likes || 0}</span>
-                                </button>
-                                <span class="text-muted" style="font-size:0.72rem;">
-                                    ${new Date(post.timestamp).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' })}
-                                </span>
+                    <div class="glass-card" style="display:flex; flex-direction:column; gap:var(--space-sm);">
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                            <div style="display:flex; align-items:center; gap:var(--space-sm);">
+                                <div class="avatar avatar-sm" style="background:var(--primary-subtle); color:var(--primary); font-size:1rem;">${(post.authorName || 'U')[0]}</div>
+                                <div>
+                                    <strong style="display:block; font-size:0.9rem; color:var(--text-main);">
+                                        ${post.userId === currentUser?.uid ? 'You' : post.authorName}
+                                    </strong>
+                                    <span class="text-muted" style="font-size:0.75rem;">
+                                        ${new Date(post.timestamp).toLocaleString([], { dateStyle:'short', timeStyle:'short' })}
+                                    </span>
+                                </div>
                             </div>
+                        </div>
+                        <p style="font-size:0.95rem; line-height:1.5; color:var(--text-main); margin-top:var(--space-xs);">${post.content}</p>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:var(--space-sm); border-top:var(--border-glass);">
+                            <button class="like-btn btn btn-ghost btn-sm" data-post-id="${post.id}" style="padding:0.25rem 0.5rem; color:var(--text-muted);">
+                                <span class="material-symbols-outlined" style="font-size:1.1rem; margin-right:4px;">favorite</span>
+                                <span class="like-count">${post.likes || 0}</span>
+                            </button>
+                            <button class="btn btn-ghost btn-sm" style="padding:0.25rem 0.5rem; color:var(--text-muted);">
+                                <span class="material-symbols-outlined" style="font-size:1.1rem; margin-right:4px;">chat_bubble</span> Reply
+                            </button>
                         </div>
                     </div>
                 `).join('');
@@ -187,19 +194,19 @@ export const initCommunity = async (container) => {
         tabContent.innerHTML = `
             <div class="product-grid">
                 ${MOCK_TASKS.map((task, i) => `
-                    <div class="glass-card staggered-fade hover-lift tap-scale" style="display:flex; flex-direction:column; gap:var(--space-sm);">
+                    <div class="glass-card" style="display:flex; flex-direction:column; gap:var(--space-sm);">
                         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                            <span class="badge ${task.badgeClass} glow-pulse">${task.badge}</span>
+                            <span class="badge ${task.badgeClass}">${task.badge}</span>
                             <span class="text-muted" style="font-size:0.75rem;">${task.deadline}</span>
                         </div>
                         <div style="display:flex; align-items:center; gap:var(--space-sm);">
-                            <span class="material-symbols-outlined leaf-sway" style="color:var(--primary);">${task.icon}</span>
+                            <span class="material-symbols-outlined" style="color:var(--primary);">${task.icon}</span>
                             <h4>${task.title}</h4>
                         </div>
                         <p class="text-muted" style="font-size:0.85rem; line-height:1.5; flex:1;">${task.desc}</p>
                         <div class="flex justify-between items-center" style="margin-top:var(--space-sm); padding-top:var(--space-sm); border-top:var(--border-glass);">
-                            <strong class="text-neon mono-data glow-pulse">+${task.pts} pts</strong>
-                            <button class="btn btn-primary btn-sm btn-submit-task hover-lift tap-scale" data-pts="${task.pts}">Submit</button>
+                            <strong class="text-neon mono-data">+${task.pts} pts</strong>
+                            <button class="btn btn-primary btn-sm btn-submit-task" data-pts="${task.pts}">Submit</button>
                         </div>
                     </div>
                 `).join('')}
@@ -250,13 +257,13 @@ export const initCommunity = async (container) => {
 
         tabContent.innerHTML = `
             <!-- Podium -->
-            <div class="leaderboard-podium staggered-fade">
+            <div class="leaderboard-podium">
                 ${podiumOrder.map((u, i) => `
-                    <div class="podium-item hover-lift">
-                        <span class="podium-rank ${podiumClasses[i]} glow-pulse">${ranks[i] === '#1' ? '👑' : ranks[i]}</span>
-                        <div class="podium-avatar ${podiumClasses[i]} breeze-float">${(u.name || 'U')[0]}</div>
+                    <div class="podium-item">
+                        <span class="podium-rank ${podiumClasses[i]}">${ranks[i] === '#1' ? '👑' : ranks[i]}</span>
+                        <div class="podium-avatar ${podiumClasses[i]}">${(u.name || 'U')[0]}</div>
                         <div class="podium-name">${u.id === currentUser?.uid ? 'You' : (u.name || 'Unknown')}</div>
-                        <div class="podium-base ${podiumClasses[i]} glow-pulse">${(u.points || 0).toLocaleString()} pts</div>
+                        <div class="podium-base ${podiumClasses[i]}">${(u.points || 0).toLocaleString()} pts</div>
                     </div>
                 `).join('')}
             </div>
@@ -269,13 +276,13 @@ export const initCommunity = async (container) => {
                     <span class="text-muted" style="font-size:0.8rem; font-weight:700; text-transform:uppercase;">Points</span>
                 </div>
                 ${rest.map((u, i) => `
-                    <div class="lb-row ${u.id === currentUser?.uid ? 'me' : ''} staggered-fade hover-lift">
+                    <div class="lb-row ${u.id === currentUser?.uid ? 'me' : ''}">
                         <span class="lb-rank">#${i + 4}</span>
                         <div class="flex items-center gap-sm" style="flex:1;">
-                            <div class="avatar avatar-xs breeze-float">${(u.name || 'U')[0]}</div>
+                            <div class="avatar avatar-xs">${(u.name || 'U')[0]}</div>
                             <span style="font-weight:${u.id === currentUser?.uid ? '700' : '500'};">${u.id === currentUser?.uid ? 'You' : (u.name || 'Unknown')}</span>
                         </div>
-                        <span class="lb-points glow-pulse">${(u.points || 0).toLocaleString()}</span>
+                        <span class="lb-points">${(u.points || 0).toLocaleString()}</span>
                     </div>
                 `).join('')}
             </div>

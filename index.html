@@ -22,8 +22,10 @@
 
     <!-- Global CSS -->
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/animations.css">
     <link rel="stylesheet" href="styles/components.css">
+
+    <!-- Razorpay Setup -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
     <!-- Page CSS -->
     <link rel="stylesheet" href="styles/pages/dashboard.css">
@@ -35,54 +37,49 @@
 </head>
 <body class="theme-dark">
 
-    <!-- Ambient Particle Background -->
-    <div id="ambient-bg">
-        <canvas id="particle-canvas"></canvas>
-    </div>
-
     <!-- App Shell -->
     <div id="app" class="app-layout" style="display: none;">
 
         <!-- Sidebar Navbar -->
         <nav id="main-nav" class="navbar glass-panel">
             <div class="nav-brand">
-                <span class="material-symbols-outlined brand-icon text-neon glow-pulse">eco</span>
+                <span class="material-symbols-outlined brand-icon text-neon">eco</span>
                 <span class="brand-text">GreenTrack</span>
             </div>
 
             <ul class="nav-links">
-                <li class="nav-item hover-lift tap-scale">
+                <li class="nav-item">
                     <a href="#dashboard" class="nav-item active" data-route="dashboard">
                         <span class="material-symbols-outlined">dashboard</span>
                         <span class="label">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item hover-lift tap-scale">
+                <li class="nav-item">
                     <a href="#carbon" class="nav-item" data-route="carbon">
                         <span class="material-symbols-outlined">co2</span>
                         <span class="label">Carbon</span>
                     </a>
                 </li>
-                <li class="nav-item hover-lift tap-scale">
+                <li class="nav-item">
                     <a href="#waste" class="nav-item" data-route="waste">
                         <span class="material-symbols-outlined">document_scanner</span>
                         <span class="label">AI Scanner</span>
                     </a>
                 </li>
-                <li class="nav-item hover-lift tap-scale">
+                <li class="nav-item">
                     <a href="#market" class="nav-item" data-route="market">
                         <span class="material-symbols-outlined">shopping_bag</span>
                         <span class="label">Market</span>
                     </a>
                 </li>
-                <li class="nav-item hover-lift tap-scale">
+                <li class="nav-item">
                     <a href="#community" class="nav-item" data-route="community">
                         <span class="material-symbols-outlined">groups</span>
                         <span class="label">Community</span>
                     </a>
                 </li>
                 <li class="nav-spacer"></li>
-                <li class="nav-item hover-lift tap-scale">
+                <li class="nav-item">
                     <a href="#profile" class="nav-item" data-route="profile">
                         <span class="material-symbols-outlined">account_circle</span>
                         <span class="label">Profile</span>
@@ -92,16 +89,16 @@
 
              <!-- Bottom Nav Controls -->
             <div class="nav-controls">
-                <button class="nav-ctrl-btn hover-lift tap-scale" id="btn-notifications">
+                <button class="nav-ctrl-btn" id="btn-notifications">
                     <span class="material-symbols-outlined">notifications</span>
                     <span>Notifications</span>
                     <span class="badge badge-red" style="margin-left:auto; font-size:0.65rem; padding:0.1rem 0.4rem;">4</span>
                 </button>
-                <button class="nav-ctrl-btn hover-lift tap-scale" id="btn-theme-toggle">
+                <button class="nav-ctrl-btn" id="btn-theme-toggle">
                     <span class="material-symbols-outlined" id="theme-icon">light_mode</span>
                     <span id="theme-label">Light Mode</span>
                 </button>
-                <button class="nav-ctrl-btn nav-signout-btn hover-lift tap-scale" id="btn-nav-signout" title="Sign Out">
+                <button class="nav-ctrl-btn nav-signout-btn" id="btn-nav-signout" title="Sign Out">
                     <span class="material-symbols-outlined" style="color: var(--error);">logout</span>
                     <span style="color: var(--error);">Sign Out</span>
                 </button>

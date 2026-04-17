@@ -67,9 +67,9 @@ export const showToast = (message, type = 'info') => {
     const icons = { success: 'check_circle', error: 'error', info: 'info', warning: 'warning' };
 
     const toast = document.createElement('div');
-    toast.className = `toast ${type} glass-fade breeze-float`;
+    toast.className = `toast ${type}`;
     toast.innerHTML = `
-        <span class="material-symbols-outlined toast-icon glow-pulse">${icons[type] || 'info'}</span>
+        <span class="material-symbols-outlined toast-icon">${icons[type] || 'info'}</span>
         <span class="toast-message">${message}</span>
     `;
 
@@ -90,15 +90,15 @@ export const showModal = (title, contentHTML, actionsHTML = '') => {
     if (!overlay || !contentBox) return;
 
     overlay.innerHTML = `
-        <div id="modal-content" class="modal-content glass-fade page-entry" style="padding:0; overflow:hidden;">
+        <div id="modal-content" class="modal-content glass-panel" style="padding:0; overflow:hidden;">
             <div class="modal-header">
                 <h3 style="margin:0; font-family:var(--font-display);">${title}</h3>
-                <button class="modal-close btn-ghost btn tap-scale" id="btn-close-modal">
+                <button class="modal-close btn-ghost btn" id="btn-close-modal">
                     <span class="material-symbols-outlined">close</span>
                 </button>
             </div>
-            <div class="modal-body staggered-fade" style="margin-bottom: var(--space-xl); padding: var(--space-xl);">${contentHTML}</div>
-            <div class="modal-actions staggered-fade" style="display:flex; gap:var(--space-md); justify-content:flex-end; padding: var(--space-lg); border-top: var(--border-glass);">${actionsHTML}</div>
+            <div class="modal-body" style="margin-bottom: var(--space-xl); padding: var(--space-xl);">${contentHTML}</div>
+            <div class="modal-actions" style="display:flex; gap:var(--space-md); justify-content:flex-end; padding: var(--space-lg); border-top: var(--border-glass);">${actionsHTML}</div>
         </div>
     `;
 
@@ -157,16 +157,16 @@ export const flyPoints = (amount, x, y) => {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 export const showAchievementModal = (title, icon = 'stars', color = 'var(--primary)') => {
     const overlay = document.createElement('div');
-    overlay.className = 'achievement-overlay glass-fade';
+    overlay.className = 'achievement-overlay';
     overlay.innerHTML = `
-        <div class="achievement-card page-entry">
-            <div class="achievement-icon-wrapper water-ripple" style="--primary:${color};">
-                <span class="material-symbols-outlined achievement-icon glow-pulse" style="color:${color}; font-size:4rem;">${icon}</span>
+        <div class="achievement-card">
+            <div class="achievement-icon-wrapper" style="--primary:${color};">
+                <span class="material-symbols-outlined achievement-icon" style="color:${color}; font-size:4rem;">${icon}</span>
             </div>
-            <h2 class="achievement-title staggered-fade" style="margin-top:var(--space-xl); color:${color};">Achievement!</h2>
-            <p class="achievement-desc staggered-fade">${title}</p>
+            <h2 class="achievement-title" style="margin-top:var(--space-xl); color:${color};">Achievement!</h2>
+            <p class="achievement-desc">${title}</p>
             <div class="achievement-glow" style="background:${color}; opacity:0.1;"></div>
-            <button class="btn btn-primary btn-lg hover-lift tap-scale staggered-fade" id="btn-collect-achievement" style="margin-top:var(--space-xl);">
+            <button class="btn btn-primary btn-lg" id="btn-collect-achievement" style="margin-top:var(--space-xl);">
                 Collect Rewards
             </button>
         </div>
@@ -183,67 +183,7 @@ export const showAchievementModal = (title, icon = 'stars', color = 'var(--prima
 // PARTICLE CANVAS BACKGROUND
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 export const initParticleCanvas = () => {
-    const canvas = document.getElementById('particle-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-
-    const resize = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener('resize', resize);
-
-    const PARTICLE_COUNT = 55;
-    const particles = [];
-
-    const mkParticle = () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.8 + 0.4,
-        dx: (Math.random() - 0.5) * 0.35,
-        dy: -(Math.random() * 0.5 + 0.15),
-        opacity: 0,
-        maxOpacity: Math.random() * 0.35 + 0.05,
-        life: 0,
-        maxLife: Math.random() * 250 + 150,
-        hue: Math.random() > 0.7 ? 90 : 150  // green or chartreuse
-    });
-
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const p = mkParticle();
-        p.life = Math.random() * p.maxLife; // stagger initial lifetimes
-        particles.push(p);
-    }
-
-    const draw = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        particles.forEach((p, i) => {
-            p.life++;
-            p.x += p.dx;
-            p.y += p.dy;
-
-            const lifeRatio = p.life / p.maxLife;
-            if (lifeRatio < 0.15) p.opacity = (lifeRatio / 0.15) * p.maxOpacity;
-            else if (lifeRatio > 0.75) p.opacity = ((1 - lifeRatio) / 0.25) * p.maxOpacity;
-            else p.opacity = p.maxOpacity;
-
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `hsla(${p.hue}, 100%, 65%, ${p.opacity})`;
-            ctx.shadowBlur = 8;
-            ctx.shadowColor = `hsl(${p.hue}, 100%, 65%)`;
-            ctx.fill();
-            ctx.shadowBlur = 0;
-
-            if (p.life >= p.maxLife) particles[i] = mkParticle();
-        });
-
-        requestAnimationFrame(draw);
-    };
-
-    draw();
+    // Disabled logic to make UI smooth and static
 };
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -261,27 +201,27 @@ export const showNotificationPanel = () => {
     if (!panel) {
         panel = document.createElement('div');
         panel.id = 'notif-panel';
-        panel.className = 'notif-panel glass-fade';
+        panel.className = 'notif-panel';
         panel.innerHTML = `
             <div class="notif-header">
                 <div>
                     <h3 style="margin:0; font-family:var(--font-display);">Notifications</h3>
                     <p class="text-muted" style="font-size:0.82rem; margin-top:2px;">${notifications.length} new updates</p>
                 </div>
-                <button class="btn btn-ghost btn-sm tap-scale" id="close-notif">
+                <button class="btn btn-ghost btn-sm" id="close-notif">
                     <span class="material-symbols-outlined">close</span>
                 </button>
             </div>
-            <div class="notif-list staggered-fade">
+            <div class="notif-list">
                 ${notifications.map((n, i) => `
-                    <div class="notif-item hover-lift">
-                        <div class="notif-icon breeze-float" style="background: rgba(255,255,255,0.05); font-size:1.4rem; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;">${n.icon}</div>
+                    <div class="notif-item">
+                        <div class="notif-icon" style="background: rgba(255,255,255,0.05); font-size:1.4rem; width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;">${n.icon}</div>
                         <div style="flex:1; min-width:0;">
                             <div style="font-weight:600; font-size:0.9rem;">${n.title}</div>
                             <div class="text-muted" style="font-size:0.8rem; margin-top:2px;">${n.body}</div>
                             <div class="text-muted" style="font-size:0.72rem; margin-top:4px;">${n.time}</div>
                         </div>
-                        <div class="notif-dot glow-pulse"></div>
+                        <div class="notif-dot"></div>
                     </div>
                 `).join('')}
             </div>
