@@ -18,7 +18,7 @@ const injectAuthStyles = () => {
         width: 100vw;
         display: flex;
         align-items: stretch;
-        overflow: hidden;
+        overflow-y: auto;
         background: var(--bg-dark);
     }
 
@@ -27,11 +27,11 @@ const injectAuthStyles = () => {
         flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: stretch;
         padding: 3.5rem 3.5rem;
         position: relative;
-        overflow: hidden;
+        overflow-y: auto;
         background: radial-gradient(ellipse at 20% 50%, rgba(0, 255, 135, 0.12) 0%, transparent 55%),
                     radial-gradient(ellipse at 80% 10%, rgba(79, 152, 255, 0.10) 0%, transparent 50%),
                     radial-gradient(ellipse at 60% 85%, rgba(46, 213, 115, 0.08) 0%, transparent 50%),
@@ -165,7 +165,7 @@ const injectAuthStyles = () => {
         flex: 0.9;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         padding: 3rem 3.5rem;
         position: relative;
