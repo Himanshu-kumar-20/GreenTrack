@@ -4,6 +4,4 @@ node_modules/
 *.log
 firebase-service-account.json
 **/firebase-service-account.json
-config.js
-push_error.txt
 push_error.txt
