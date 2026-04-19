@@ -258,19 +258,13 @@ export const initWaste = async (container) => {
         const rect = cameraFrame.getBoundingClientRect();
         flyPoints(xpAmount, rect.left + rect.width / 2, rect.top + rect.height / 2);
 
-
         try {
-            // AI mock classification with realistic weighted random
-            const categories = Object.keys(WASTE_DATA);
-            const weights = [0.40, 0.25, 0.25, 0.10]; // recyclable most common
-            const rand = Math.random();
-            let cumulative = 0;
-            let bestMatch = categories[0];
-            for (let i = 0; i < weights.length; i++) {
-                cumulative += weights[i];
-                if (rand <= cumulative) { bestMatch = categories[i]; break; }
-            }
-            const confidence = (Math.random() * 25 + 72).toFixed(0); // 72–97%
+            const response = await fetch('/api/waste/classify');
+            const apiData = await response.json();
+            if (!apiData.success) throw new Error(apiData.error || 'Classification failed');
+
+            const bestMatch = apiData.label;
+            const confidence = apiData.confidence * 100;
 
             const data = WASTE_DATA[bestMatch];
             currentScan = { label: bestMatch, confidence, timestamp: new Date().toISOString() };

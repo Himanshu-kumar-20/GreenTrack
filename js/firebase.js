@@ -1,7 +1,7 @@
 // js/firebase.js
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
-import CONFIG from '../config.js';
+import CONFIG from './config.js';
 import { getLevel } from './utils.js';
 import { showAchievementModal } from './components.js';
 

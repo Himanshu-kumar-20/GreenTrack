@@ -24,17 +24,18 @@ const injectAuthStyles = () => {
 
     /* Left branding panel */
     .auth-brand-panel {
-        flex: 1.1;
+        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
-        padding: 5rem 4rem;
+        align-items: stretch;
+        padding: 3.5rem 3.5rem;
         position: relative;
         overflow: hidden;
-        background-image: linear-gradient(rgba(6, 10, 7, 0.4), rgba(6, 10, 7, 0.4)), url('assets/landing_bg.png');
-        background-size: cover;
-        background-position: center;
+        background: radial-gradient(ellipse at 20% 50%, rgba(0, 255, 135, 0.12) 0%, transparent 55%),
+                    radial-gradient(ellipse at 80% 10%, rgba(79, 152, 255, 0.10) 0%, transparent 50%),
+                    radial-gradient(ellipse at 60% 85%, rgba(46, 213, 115, 0.08) 0%, transparent 50%),
+                    linear-gradient(160deg, #050d07 0%, #081308 40%, #060f07 100%);
     }
 
     /* Animated gradient orbs */
@@ -83,6 +84,7 @@ const injectAuthStyles = () => {
     .auth-brand-content {
         position: relative;
         z-index: 2;
+        width: 100%;
     }
     .auth-brand-icon {
         font-size: 5rem !important;
@@ -109,31 +111,32 @@ const injectAuthStyles = () => {
 
     .auth-brand-desc {
         color: rgba(232, 238, 233, 0.85);
-        font-size: 1.1rem;
+        font-size: 1rem;
         line-height: 1.7;
-        max-width: 380px;
-        margin-bottom: 2.8rem;
+        max-width: 100%;
+        margin-bottom: 2rem;
         text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     /* Floating feature pills */
     .auth-features {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        margin-bottom: 0;
     }
     .auth-feature-pill {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
-        padding: 0.6rem 1.1rem;
+        gap: 0.6rem;
+        padding: 0.6rem 1rem;
         background: rgba(0,255,135,0.06);
         border: 1px solid rgba(0,255,135,0.18);
-        border-radius: 999px;
-        font-size: 0.88rem;
+        border-radius: 12px;
+        font-size: 0.85rem;
         color: var(--text-muted);
         animation: pillFadeIn 0.5s ease both;
-        width: fit-content;
+        width: 100%;
         backdrop-filter: blur(8px);
     }
     .auth-feature-pill .material-symbols-outlined {
@@ -610,7 +613,7 @@ export const renderAuthView = (type = 'login') => {
                 <div class="auth-orb auth-orb-1"></div>
                 <div class="auth-orb auth-orb-2"></div>
                 <div class="auth-orb auth-orb-3"></div>
-                <div class="auth-aura-watermark">AURA SUSTAIN</div>
+                <!-- Watermark Removed for collision fix -->
 
                 <div class="auth-brand-content">
                     <span class="material-symbols-outlined auth-brand-icon">eco</span>
@@ -631,6 +634,134 @@ export const renderAuthView = (type = 'login') => {
                         <div class="auth-feature-pill">
                             <span class="material-symbols-outlined">groups</span>
                             Global Eco Community
+                        </div>
+                        <div class="auth-feature-pill">
+                            <span class="material-symbols-outlined">shopping_bag</span>
+                            Organic Marketplace
+                        </div>
+                    </div>
+
+
+                    <!-- ── Eco Impact Visual Panel ────────────────────── -->
+                    <div style="margin-top: 2rem; animation: fadeUp 0.8s ease 0.7s both;">
+                        
+                        <!-- Mini header -->
+                        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem;">
+                            <span style="color:#8FA396; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:600;">Platform Impact — Last 7 Days</span>
+                            <span style="color:#2ed573; font-size:0.75rem; font-weight:500; display:flex; align-items:center; gap:0.3rem;">
+                                <span style="width:6px;height:6px;border-radius:50%;background:#2ed573;display:inline-block;box-shadow:0 0 6px #2ed573;"></span>
+                                Live
+                            </span>
+                        </div>
+
+                        <!-- Animated SVG trend chart -->
+                        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 1rem 1rem 0.5rem; position:relative; overflow:hidden;">
+                            <svg viewBox="0 0 280 80" style="width:100%;height:70px;display:block;" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#2ed573" stop-opacity="0.4"/>
+                                        <stop offset="100%" stop-color="#2ed573" stop-opacity="0"/>
+                                    </linearGradient>
+                                    <filter id="glow">
+                                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                    </filter>
+                                </defs>
+                                <!-- Grid lines -->
+                                <line x1="0" y1="20" x2="280" y2="20" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                                <line x1="0" y1="40" x2="280" y2="40" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                                <line x1="0" y1="60" x2="280" y2="60" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                                <!-- Fill area -->
+                                <path d="M0,65 L40,55 L80,45 L120,38 L160,28 L200,20 L240,12 L280,8 L280,80 L0,80 Z" fill="url(#chartGrad)"/>
+                                <!-- Line -->
+                                <path d="M0,65 L40,55 L80,45 L120,38 L160,28 L200,20 L240,12 L280,8" fill="none" stroke="#2ed573" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+                                <!-- Dots -->
+                                <circle cx="280" cy="8" r="4" fill="#2ed573" filter="url(#glow)"/>
+                                <circle cx="200" cy="20" r="3" fill="rgba(46,213,115,0.6)"/>
+                                <circle cx="120" cy="38" r="3" fill="rgba(46,213,115,0.6)"/>
+                            </svg>
+                            <!-- X-axis labels -->
+                            <div style="display:flex;justify-content:space-between;padding:0 0.25rem;margin-top:0.25rem;">
+                                <span style="color:#8FA396;font-size:0.65rem;">Mon</span>
+                                <span style="color:#8FA396;font-size:0.65rem;">Tue</span>
+                                <span style="color:#8FA396;font-size:0.65rem;">Wed</span>
+                                <span style="color:#8FA396;font-size:0.65rem;">Thu</span>
+                                <span style="color:#8FA396;font-size:0.65rem;">Fri</span>
+                                <span style="color:#8FA396;font-size:0.65rem;">Sat</span>
+                                <span style="color:#2ed573;font-size:0.65rem;font-weight:600;">Today</span>
+                            </div>
+                        </div>
+
+                        <!-- Today's quick metrics row -->
+                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.6rem; margin-top:0.6rem;">
+                            <div style="background:rgba(46,213,115,0.07);border:1px solid rgba(46,213,115,0.15);border-radius:10px;padding:0.6rem 0.75rem;text-align:center;">
+                                <div style="font-size:1.1rem;font-weight:700;color:#2ed573;line-height:1.2;">↓ 23%</div>
+                                <div style="font-size:0.65rem;color:#8FA396;margin-top:0.2rem;">Avg CO₂</div>
+                            </div>
+                            <div style="background:rgba(79,152,255,0.07);border:1px solid rgba(79,152,255,0.15);border-radius:10px;padding:0.6rem 0.75rem;text-align:center;">
+                                <div style="font-size:1.1rem;font-weight:700;color:#4F98FF;line-height:1.2;">4,128</div>
+                                <div style="font-size:0.65rem;color:#8FA396;margin-top:0.2rem;">Scans Today</div>
+                            </div>
+                            <div style="background:rgba(255,176,32,0.07);border:1px solid rgba(255,176,32,0.15);border-radius:10px;padding:0.6rem 0.75rem;text-align:center;">
+                                <div style="font-size:1.1rem;font-weight:700;color:#FFB020;line-height:1.2;">318</div>
+                                <div style="font-size:0.65rem;color:#8FA396;margin-top:0.2rem;">Trees Saved</div>
+                            </div>
+                        </div>
+
+                        <!-- World activity dots -->
+                        <div style="margin-top:0.6rem;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:0.65rem 0.85rem; display:flex; align-items:center; gap:0.75rem;">
+                            <span class="material-symbols-outlined" style="color:#2ed573;font-size:1.1rem;">public</span>
+                            <span style="color:#8FA396;font-size:0.8rem;">Active right now in</span>
+                            <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-left:auto;">
+                                <span style="background:rgba(46,213,115,0.15);color:#2ed573;font-size:0.68rem;padding:0.15rem 0.5rem;border-radius:20px;font-weight:500;">🇮🇳 India</span>
+                                <span style="background:rgba(46,213,115,0.15);color:#2ed573;font-size:0.68rem;padding:0.15rem 0.5rem;border-radius:20px;font-weight:500;">🇺🇸 USA</span>
+                                <span style="background:rgba(46,213,115,0.15);color:#2ed573;font-size:0.68rem;padding:0.15rem 0.5rem;border-radius:20px;font-weight:500;">🇩🇪 DE</span>
+                                <span style="background:rgba(46,213,115,0.15);color:#2ed573;font-size:0.68rem;padding:0.15rem 0.5rem;border-radius:20px;font-weight:500;">+41</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial / Social Proof -->
+
+                    <div style="margin-top: 2.5rem; padding: 1.25rem 1.5rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; animation: fadeUp 0.8s ease 0.85s both;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.8rem;">
+                            <div style="display: flex;">
+                                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#2ed573,#26a85a);border:2px solid #050d07;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:#050d07;">R</div>
+                                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#4F98FF,#2563eb);border:2px solid #050d07;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:white;margin-left:-8px;">S</div>
+                                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#FF6B6B,#c0392b);border:2px solid #050d07;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:white;margin-left:-8px;">A</div>
+                            </div>
+                            <div style="display:flex;gap:2px;">
+                                <span style="color:#FFD700;font-size:0.8rem;">★★★★★</span>
+                            </div>
+                            <span style="color:#8FA396;font-size:0.78rem;margin-left:auto;">4.9 / 5.0</span>
+                        </div>
+                        <p style="color:rgba(232,238,233,0.8);font-size:0.88rem;line-height:1.6;margin:0;font-style:italic;">&ldquo;GreenTrack helped me reduce my carbon footprint by 30% in just one month. This platform is a game-changer!&rdquo;</p>
+                        <p style="color:#2ed573;font-size:0.78rem;margin-top:0.5rem;font-weight:600;">— Rahul S., Eco Advocate</p>
+                    </div>
+
+                    <!-- Live activity ticker -->
+                    <div style="margin-top: 1rem; display:flex; align-items:center; gap:0.6rem; padding: 0.65rem 1rem; background: rgba(46, 213, 115, 0.05); border-radius: 10px; border: 1px solid rgba(46, 213, 115, 0.12); animation: fadeUp 0.8s ease 1s both;">
+                        <span style="width:7px;height:7px;border-radius:50%;background:#2ed573;flex-shrink:0;box-shadow:0 0 8px #2ed573;animation:blink 1.5s ease-in-out infinite;"></span>
+                        <span style="color:#8FA396;font-size:0.8rem;">Live:</span>
+                        <span id="auth-live-ticker" style="color:rgba(232,238,233,0.85);font-size:0.8rem;transition:opacity 0.5s;">Priya just reduced 2.4kg CO₂ by cycling 🚲</span>
+                    </div>
+
+                    <style>
+                        @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+                    </style>
+
+                    <div style="margin-top: 1.5rem; display: flex; gap: 1rem; animation: fadeUp 1s ease 1.1s both;">
+                        <div style="background: rgba(46, 213, 115, 0.1); padding: 1rem 1.5rem; border-radius: 16px; border: 1px solid rgba(46, 213, 115, 0.2); backdrop-filter: blur(10px); flex: 1;">
+                            <div style="font-size: 0.78rem; color: #8FA396; margin-bottom: 0.25rem;">Active Users</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: #2ed573;">12,400+</div>
+                        </div>
+                        <div style="background: rgba(46, 213, 115, 0.1); padding: 1rem 1.5rem; border-radius: 16px; border: 1px solid rgba(46, 213, 115, 0.2); backdrop-filter: blur(10px); flex: 1;">
+                            <div style="font-size: 0.78rem; color: #8FA396; margin-bottom: 0.25rem;">CO₂ Saved Today</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: #2ed573;">3,240 kg</div>
+                        </div>
+                        <div style="background: rgba(46, 213, 115, 0.1); padding: 1rem 1.5rem; border-radius: 16px; border: 1px solid rgba(46, 213, 115, 0.2); backdrop-filter: blur(10px); flex: 1;">
+                            <div style="font-size: 0.78rem; color: #8FA396; margin-bottom: 0.25rem;">Items Scanned</div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: #2ed573;">89K+</div>
                         </div>
                     </div>
                 </div>
@@ -725,43 +856,144 @@ export const renderAuthView = (type = 'login') => {
         </div>
     `;
 
-    /* ── Event Handlers ─────────────────────────────────────── */
+    // Start live activity ticker
+    const tickerMsgs = [
+        "Priya just reduced 2.4kg CO₂ by cycling 🚲",
+        "Rahul scanned a recyclable bottle ♻️",
+        "Aisha joined the 30-day green challenge 🌱",
+        "Sanjay saved 1.8kg CO₂ using public transit 🚌",
+        "Meera logged her first zero-waste meal 🥗",
+        "Dev purchased eco-friendly packaging ✅",
+        "Aarav planted 2 trees this week 🌳",
+    ];
+    let tickerIndex = 0;
+    const tickerEl = document.getElementById('auth-live-ticker');
+    if (tickerEl) {
+        setInterval(() => {
+            tickerEl.style.opacity = '0';
+            setTimeout(() => {
+                tickerIndex = (tickerIndex + 1) % tickerMsgs.length;
+                tickerEl.textContent = tickerMsgs[tickerIndex];
+                tickerEl.style.opacity = '1';
+            }, 500);
+        }, 3500);
+    }
 
-    // Tab switching
-    $('tab-login').addEventListener('click', () => renderAuthView('login'));
-    $('tab-register').addEventListener('click', () => renderAuthView('register'));
-    $('auth-toggle').addEventListener('click', () => renderAuthView(isLogin ? 'register' : 'login'));
+    // ── Helper: show mock account chooser ──────────────────────
+    const showMockGoogleChooser = (btn) => {
+        btn.innerHTML = `<span class="auth-spinner"></span> Opening accounts...`;
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(6px);
+            display: flex; align-items: center; justify-content: center; z-index: 10000;
+        `;
+        overlay.innerHTML = `
+            <div style="background: linear-gradient(160deg, #111b15 0%, #0d1810 100%); border: 1px solid rgba(46, 213, 115, 0.2); border-radius: 20px; padding: 2rem; width: 380px; max-width: 90vw; text-align: center; box-shadow: 0 32px 64px rgba(0,0,0,0.6); animation: fadeUp 0.3s ease;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1.2rem;">
+                    <svg width="24" height="24" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                    <h3 style="color: white; margin: 0; font-family: 'DM Sans', sans-serif; font-size: 1.1rem;">Sign in with Google</h3>
+                </div>
+                <p style="color: #8FA396; font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.5;">Choose an account to continue to <strong style="color: #2ed573;">GreenTrack</strong></p>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+                    <button class="mock-google-acc" data-name="Himanshu Kumar" data-email="himanshu@gmail.com" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 0.85rem 1rem; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 1rem; width: 100%; transition: background 0.2s;">
+                        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2ed573,#26a85a);color:#050d07;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;flex-shrink:0;">H</div>
+                        <div><div style="color:white;font-weight:500;font-family:'DM Sans',sans-serif;">Himanshu Kumar</div><div style="color:#8FA396;font-size:0.78rem;">himanshu@gmail.com</div></div>
+                    </button>
+                    <button class="mock-google-acc" data-name="Guest Account" data-email="guest@gmail.com" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 0.85rem 1rem; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 1rem; width: 100%; transition: background 0.2s;">
+                        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#4F98FF,#2563eb);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;flex-shrink:0;">G</div>
+                        <div><div style="color:white;font-weight:500;font-family:'DM Sans',sans-serif;">Guest Account</div><div style="color:#8FA396;font-size:0.78rem;">guest@gmail.com</div></div>
+                    </button>
+                    <button class="mock-google-acc" data-name="Eco Explorer" data-email="eco.explorer@gmail.com" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 0.85rem 1rem; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 1rem; width: 100%; transition: background 0.2s;">
+                        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#FF6B6B,#c0392b);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;flex-shrink:0;">E</div>
+                        <div><div style="color:white;font-weight:500;font-family:'DM Sans',sans-serif;">Eco Explorer</div><div style="color:#8FA396;font-size:0.78rem;">eco.explorer@gmail.com</div></div>
+                    </button>
+                </div>
+                <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;">
+                    <span style="color:#8FA396;font-size:0.75rem;">Demo mode — add GOOGLE_CLIENT_ID to config.js for real login</span>
+                    <button id="mock-google-cancel" style="background:none;border:none;color:#4F98FF;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.85rem;">Cancel</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+        overlay.querySelectorAll('.mock-google-acc').forEach(accBtn => {
+            accBtn.addEventListener('mouseenter', () => accBtn.style.background = 'rgba(255,255,255,0.1)');
+            accBtn.addEventListener('mouseleave', () => accBtn.style.background = 'rgba(255,255,255,0.04)');
+            accBtn.addEventListener('click', () => {
+                document.body.removeChild(overlay);
+                const mockUser = {
+                    uid: 'google_' + Math.random().toString(36).substr(2, 9),
+                    displayName: accBtn.getAttribute('data-name'),
+                    email: accBtn.getAttribute('data-email'),
+                    isAnonymous: false,
+                };
+                setAuthUser(mockUser);
+                handleSuccessfulLogin(mockUser.displayName);
+            });
+        });
+        document.getElementById('mock-google-cancel').addEventListener('click', () => {
+            document.body.removeChild(overlay);
+            btn.disabled = false;
+            btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Sign in with Google`;
+        });
+    };
 
     // Social sign-in handlers
     $('btn-google')?.addEventListener('click', async () => {
         const btn = $('btn-google');
         btn.disabled = true;
-        btn.innerHTML = `<span class="auth-spinner"></span> Connecting to Google...`;
+        btn.innerHTML = `<span class="auth-spinner"></span> Connecting...`;
+
+        // ── Try real Google Identity Services (GIS) first ──
+        // Works with Vercel — no Firebase needed. Just add GOOGLE_CLIENT_ID to config.js
+        if (window.google?.accounts && CONFIG.GOOGLE_CLIENT_ID && CONFIG.GOOGLE_CLIENT_ID !== 'YOUR_GOOGLE_CLIENT_ID') {
+            try {
+                window.google.accounts.id.initialize({
+                    client_id: CONFIG.GOOGLE_CLIENT_ID,
+                    callback: (response) => {
+                        // Decode the JWT token to get user info
+                        const payload = JSON.parse(atob(response.credential.split('.')[1]));
+                        const gisUser = {
+                            uid: 'gis_' + payload.sub,
+                            displayName: payload.name,
+                            email: payload.email,
+                            photoURL: payload.picture,
+                            isAnonymous: false,
+                        };
+                        setAuthUser(gisUser);
+                        handleSuccessfulLogin(gisUser.displayName);
+                    },
+                    auto_select: false,
+                    cancel_on_tap_outside: true,
+                });
+                window.google.accounts.id.prompt((notification) => {
+                    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                        // Popup was blocked — fall back to mock
+                        showMockGoogleChooser(btn);
+                    }
+                });
+                btn.disabled = false;
+                btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Sign in with Google`;
+                return;
+            } catch (gisError) {
+                console.warn('GIS error, falling back to mock:', gisError);
+            }
+        }
+
+        // ── Fallback: try Firebase Google auth ──
         try {
             const user = await signInWithGoogleFirebase();
             handleSuccessfulLogin(user.displayName || 'Google User');
         } catch (error) {
-            console.error("Google auth err", error);
-            // Fallback mock logic for hackathon demo if firebase config is missing
-            if (error.message.includes("not initialized") || error.code) {
-                showToast("Firebase Config missing, using Mock Login", "warning");
-                setTimeout(() => {
-                    const mockUser = {
-                        uid: 'google_' + Math.random().toString(36).substr(2, 9),
-                        displayName: 'Google Demo User',
-                        email: 'user@gmail.com',
-                        isAnonymous: false,
-                    };
-                    setAuthUser(mockUser);
-                    handleSuccessfulLogin(mockUser.displayName);
-                }, 800);
-            } else {
-                showToast("Login Failed", "error");
-                btn.disabled = false;
-                btn.innerHTML = `Sign in with Google`;
-            }
+            // ── Final fallback: mock chooser ──
+            showMockGoogleChooser(btn);
         }
     });
+
+    /* ── Event Handlers ─────────────────────────────────────── */
+    // Tab switching
+    $('tab-login').addEventListener('click', () => renderAuthView('login'));
+    $('tab-register').addEventListener('click', () => renderAuthView('register'));
+    $('auth-toggle').addEventListener('click', () => renderAuthView(isLogin ? 'register' : 'login'));
 
     $('btn-github')?.addEventListener('click', async () => {
         const btn = $('btn-github');
@@ -914,6 +1146,8 @@ const handleSuccessfulLogin = (name = 'Explorer') => {
 export const performSignOut = () => {
     // Create confirmation dialog
     if (document.getElementById('signout-overlay')) return;
+
+    injectAuthStyles();
 
     const overlay = document.createElement('div');
     overlay.className = 'signout-confirm glass-fade';

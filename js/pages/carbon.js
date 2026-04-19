@@ -11,8 +11,10 @@ const TIPS_BY_TYPE = {
     ],
     food: [
         { icon: 'spa', text: 'One plant-based meal per day can save 0.5 tonnes CO₂ per year.' },
-        { icon: 'restaurant', text: 'Reducing beef by 50% saves around 300kg CO₂ annually.' },
-        { icon: 'local_grocery_store', text: 'Buy local & seasonal to cut food transport emissions.' },
+        { icon: 'local_grocery_store', text: 'Buying local seasonal vegetables like Okra or Drumsticks cuts food transport emissions.' },
+        { icon: 'agriculture', text: 'Millets are climate-resilient crops that need 70% less water than rice.' },
+        { icon: 'potted_plant', text: 'Switching to organic herbs reduces chemical pesticide usage by 100%.' },
+        { icon: 'restaurant', text: 'Reducing dairy/meat by 50% saves around 400kg CO₂ annually.' },
     ],
     energy: [
         { icon: 'lightbulb', text: 'Replace all bulbs with LEDs — uses 75% less energy.' },
@@ -68,7 +70,7 @@ export const initCarbon = async (container) => {
 
             <div class="glass-card staggered-fade" style="margin-bottom:var(--space-xl);">
                 <form id="carbon-form">
-                    <div id="dynamic-inputs" class="staggered-fade"></div>
+                    <div id="dynamic-inputs" class="staggered-fade" style="display: flex; flex-direction: column; gap: var(--space-md);"></div>
                     <div class="flex items-center justify-between" style="margin-top:var(--space-lg);">
                         <button type="submit" class="btn btn-primary btn-lg hover-lift tap-scale" id="btn-calc">
                             <span class="material-symbols-outlined glow-pulse">calculate</span>
@@ -229,10 +231,16 @@ export const initCarbon = async (container) => {
         if (activeType === 'flight')  params = { hours: document.getElementById('input-hours')?.value, classFactor: document.getElementById('input-class')?.value };
 
         try {
-            await sleep(900);
-            let co2e = calculateCarbon(activeType, params);
-            if (activeType === 'flight' && params.classFactor) co2e *= parseFloat(params.classFactor);
+            const response = await fetch('/api/carbon/estimate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type: activeType, params })
+            });
+            
+            const data = await response.json();
+            if (!data.success) throw new Error(data.error || 'API Error');
 
+            let co2e = data.kg_co2e;
             lastCo2 = co2e;
 
             // Show results
@@ -265,12 +273,15 @@ export const initCarbon = async (container) => {
             if (typeof Chart !== 'undefined') {
                 const donutCtx = document.getElementById('carbon-donut')?.getContext('2d');
                 if (donutCtx) {
+                    if (window.carbonChart instanceof Chart) {
+                        window.carbonChart.destroy();
+                    }
                     const breakdown = {
                         'Direct Emissions': co2e * 0.65,
                         'Indirect (Lifecycle)': co2e * 0.25,
                         'Infrastructure': co2e * 0.10
                     };
-                    new Chart(donutCtx, {
+                    window.carbonChart = new Chart(donutCtx, {
                         type: 'doughnut',
                         data: {
                             labels: Object.keys(breakdown),
@@ -295,7 +306,36 @@ export const initCarbon = async (container) => {
                                     callbacks: { label: (ctx) => ` ${ctx.parsed.toFixed(2)} kg CO₂` }
                                 }
                             }
-                        }
+                        },
+                        plugins: [{
+                            id: 'centerText',
+                            beforeDraw: (chart) => {
+                                const { ctx } = chart;
+                                ctx.restore();
+                                
+                                let centerX = chart.width / 2;
+                                let centerY = chart.height / 2;
+                                
+                                try {
+                                    const meta = chart.getDatasetMeta(0);
+                                    if (meta && meta.data && meta.data.length > 0) {
+                                        centerX = meta.data[0].x;
+                                        centerY = meta.data[0].y;
+                                    }
+                                } catch(e) {}
+                                
+                                ctx.font = "bold 1.8rem 'Inter', sans-serif";
+                                ctx.textBaseline = "middle";
+                                ctx.textAlign = "center";
+                                ctx.fillStyle = "#ffffff";
+                                ctx.fillText(co2e.toFixed(1) + " kg", centerX, centerY - 8);
+                                
+                                ctx.font = "500 0.85rem 'Inter', sans-serif";
+                                ctx.fillStyle = "#8FA396";
+                                ctx.fillText("Total CO₂", centerX, centerY + 18);
+                                ctx.save();
+                            }
+                        }]
                     });
                 }
             }

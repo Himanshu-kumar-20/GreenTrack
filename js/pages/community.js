@@ -251,21 +251,36 @@ export const initCommunity = async (container) => {
 
         const top3 = users.slice(0, 3);
         const rest = users.slice(3);
-        const podiumOrder = top3.length >= 3 ? [top3[1], top3[0], top3[2]] : top3; // Silver, Gold, Bronze
-        const podiumClasses = top3.length >= 3 ? ['silver', 'gold', 'bronze'] : ['gold', 'silver', 'bronze'];
-        const ranks = top3.length >= 3 ? ['#2', '#1', '#3'] : ['#1', '#2', '#3'];
+        // Handle fewer than 3 users gracefully
+        const roles = [
+            { class: 'gold', rank: '#1', user: top3[0] || null },
+            { class: 'silver', rank: '#2', user: top3[1] || null },
+            { class: 'bronze', rank: '#3', user: top3[2] || null }
+        ];
+
+        // Display order in the grid: [Silver, Gold, Bronze]
+        const displayOrder = [roles[1], roles[0], roles[2]];
 
         tabContent.innerHTML = `
             <!-- Podium -->
-            <div class="leaderboard-podium">
-                ${podiumOrder.map((u, i) => `
-                    <div class="podium-item">
-                        <span class="podium-rank ${podiumClasses[i]}">${ranks[i] === '#1' ? '👑' : ranks[i]}</span>
-                        <div class="podium-avatar ${podiumClasses[i]}">${(u.name || 'U')[0]}</div>
-                        <div class="podium-name">${u.id === currentUser?.uid ? 'You' : (u.name || 'Unknown')}</div>
-                        <div class="podium-base ${podiumClasses[i]}">${(u.points || 0).toLocaleString()} pts</div>
-                    </div>
-                `).join('')}
+            <div class="leaderboard-podium" id="podium-container">
+                ${displayOrder.map(role => {
+                    if (!role.user) return `<div class="podium-item inactive" style="opacity:0.2; transform:scale(0.8);">
+                        <div class="podium-avatar" style="background:rgba(255,255,255,0.05); color:transparent;">?</div>
+                        <div class="podium-base" style="height:30px; background:rgba(255,255,255,0.02);"></div>
+                    </div>`;
+
+                    const user = role.user;
+                    const initial = (user.name || 'U')[0];
+                    return `
+                        <div class="podium-item">
+                            <div class="podium-rank ${role.class}">${role.rank === '#1' ? '👑' : role.rank}</div>
+                            <div class="podium-avatar ${role.class}">${initial}</div>
+                            <div class="podium-name">${user.id === currentUser?.uid ? 'You' : (user.name || 'Unknown')}</div>
+                            <div class="podium-base ${role.class}">${(user.points || 0).toLocaleString()} pts</div>
+                        </div>
+                    `;
+                }).join('')}
             </div>
 
             <!-- Rest of leaderboard -->

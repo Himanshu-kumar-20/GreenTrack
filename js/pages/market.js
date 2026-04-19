@@ -6,22 +6,1248 @@ import CONFIG from '../config.js';
 let cart = [];
 
 const products = [
-    { id: '1', name: 'Bamboo Toothbrush (Pack of 4)', category: 'Eco', price: 160, farmer: 'Eco Basics', rating: 4.8, img: 'https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=400&h=300&fit=crop' },
-    { id: '2', name: 'Organic Cotton T-Shirt', category: 'Clothing', price: 850, farmer: 'Earth Threads', rating: 4.9, img: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=300&fit=crop' },
-    { id: '3', name: 'Solar Power Bank 10000mAh', category: 'Gadgets', price: 1450, farmer: 'SunTech', rating: 4.5, img: 'https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=400&h=300&fit=crop' },
-    { id: '4', name: 'Reusable Coffee Cup', category: 'Eco', price: 350, farmer: 'Zero Waste Shop', rating: 4.7, img: 'https://images.unsplash.com/photo-1544415843-85bbfe9c9162?w=400&h=300&fit=crop' },
-    { id: '5', name: 'Upcycled Denim Wallet', category: 'Accessories', price: 420, farmer: 'ReWear', rating: 4.6, img: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&h=300&fit=crop' },
-    { id: '6', name: 'Hemp Tote Bag', category: 'Clothing', price: 200, farmer: 'Nandi Farms', rating: 4.9, img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&h=300&fit=crop' },
-    { id: '7', name: 'Smart Water Bottle (Tracks Hydration)', category: 'Gadgets', price: 1800, farmer: 'HydroSmart', rating: 5.0, img: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=300&fit=crop' },
-    { id: '8', name: 'Bamboo Sunglasses', category: 'Accessories', price: 890, farmer: 'EcoVibe', rating: 4.8, img: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=300&fit=crop' },
-    { id: '9', name: 'Beeswax Food Wraps (Set of 3)', category: 'Eco', price: 380, farmer: 'Bhive Organics', rating: 4.7, img: 'https://images.unsplash.com/photo-1616401037704-5f1118150f14?w=400&h=300&fit=crop' },
-    { id: '10', name: 'Recycled Polyester Jacket', category: 'Clothing', price: 3400, farmer: 'Green Gear', rating: 4.8, img: 'https://images.unsplash.com/photo-1559551409-dadc959f76b8?w=400&h=300&fit=crop' },
-    { id: '11', name: 'LED Solar Lantern', category: 'Gadgets', price: 650, farmer: 'SunTech', rating: 4.9, img: 'https://images.unsplash.com/photo-1515238210350-a7342880c54e?w=400&h=300&fit=crop' },
-    { id: '12', name: 'Cork Yoga Mat', category: 'Eco', price: 1250, farmer: 'ZenEarth', rating: 4.6, img: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=400&h=300&fit=crop' },
-    { id: '13', name: 'Wooden Watch', category: 'Accessories', price: 2100, farmer: 'ForestTime', rating: 4.5, img: 'https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=400&h=300&fit=crop' },
-    { id: '14', name: 'Organic Linen Shirt', category: 'Clothing', price: 1100, farmer: 'Earth Threads', rating: 4.4, img: 'https://images.unsplash.com/photo-1596755094514-f87e32f05c45?w=400&h=300&fit=crop' },
-    { id: '15', name: 'Bamboo Cutlery Set', category: 'Eco', price: 250, farmer: 'Eco Basics', rating: 4.7, img: 'https://images.unsplash.com/photo-1584346133934-a3afd2a33c4c?w=400&h=300&fit=crop' },
-    { id: '16', name: 'Windup Emergency Radio (No Battery)', category: 'Gadgets', price: 1400, farmer: 'SurvivalEco', rating: 4.8, img: 'https://images.unsplash.com/photo-1590740907297-f5da1752b123?w=400&h=300&fit=crop' },
+  {
+    "id": "1",
+    "name": "Bamboo toothbrush",
+    "category": "Eco",
+    "price": 343,
+    "farmer": "Ancient Grains",
+    "rating": "4.2",
+    "img": "https://picsum.photos/seed/mkt_1/400/300"
+  },
+  {
+    "id": "2",
+    "name": "Reusable shopping bags",
+    "category": "Eco",
+    "price": 88,
+    "farmer": "Eco Basics",
+    "rating": "4.0",
+    "img": "https://picsum.photos/seed/mkt_2/400/300"
+  },
+  {
+    "id": "3",
+    "name": "Solar-powered charger",
+    "category": "Eco",
+    "price": 494,
+    "farmer": "Earth Threads",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_3/400/300"
+  },
+  {
+    "id": "4",
+    "name": "Compost bin",
+    "category": "Eco",
+    "price": 71,
+    "farmer": "Natures Best",
+    "rating": "4.8",
+    "img": "https://picsum.photos/seed/mkt_4/400/300"
+  },
+  {
+    "id": "5",
+    "name": "Beeswax food wraps",
+    "category": "Eco",
+    "price": 71,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "4.7",
+    "img": "https://picsum.photos/seed/mkt_5/400/300"
+  },
+  {
+    "id": "6",
+    "name": "Reusable water bottle",
+    "category": "Eco",
+    "price": 419,
+    "farmer": "Nandi Farms",
+    "rating": "4.9",
+    "img": "https://picsum.photos/seed/mkt_6/400/300"
+  },
+  {
+    "id": "7",
+    "name": "LED light bulbs",
+    "category": "Eco",
+    "price": 193,
+    "farmer": "Earth Threads",
+    "rating": "3.6",
+    "img": "https://picsum.photos/seed/mkt_7/400/300"
+  },
+  {
+    "id": "8",
+    "name": "Eco-friendly cleaning products",
+    "category": "Eco",
+    "price": 453,
+    "farmer": "Nandi Farms",
+    "rating": "4.6",
+    "img": "https://picsum.photos/seed/mkt_8/400/300"
+  },
+  {
+    "id": "9",
+    "name": "Cloth napkins",
+    "category": "Eco",
+    "price": 321,
+    "farmer": "Ancient Grains",
+    "rating": "3.5",
+    "img": "https://picsum.photos/seed/mkt_9/400/300"
+  },
+  {
+    "id": "10",
+    "name": "Recycled paper notebooks",
+    "category": "Eco",
+    "price": 156,
+    "farmer": "Eco Basics",
+    "rating": "3.6",
+    "img": "https://picsum.photos/seed/mkt_10/400/300"
+  },
+  {
+    "id": "11",
+    "name": "Metal straws",
+    "category": "Eco",
+    "price": 65,
+    "farmer": "Organic Roots",
+    "rating": "5.0",
+    "img": "https://picsum.photos/seed/mkt_11/400/300"
+  },
+  {
+    "id": "12",
+    "name": "Biodegradable trash bags",
+    "category": "Eco",
+    "price": 356,
+    "farmer": "Nandi Farms",
+    "rating": "4.4",
+    "img": "https://picsum.photos/seed/mkt_12/400/300"
+  },
+  {
+    "id": "13",
+    "name": "Rainwater harvesting system",
+    "category": "Eco",
+    "price": 152,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "4.5",
+    "img": "https://picsum.photos/seed/mkt_13/400/300"
+  },
+  {
+    "id": "14",
+    "name": "Energy-efficient appliances",
+    "category": "Eco",
+    "price": 445,
+    "farmer": "Pure Harvest",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_14/400/300"
+  },
+  {
+    "id": "15",
+    "name": "Organic fertilizers",
+    "category": "Eco",
+    "price": 385,
+    "farmer": "Organic Roots",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_15/400/300"
+  },
+  {
+    "id": "16",
+    "name": "T-shirts",
+    "category": "Clothing",
+    "price": 642,
+    "farmer": "Green Acres",
+    "rating": "4.7",
+    "img": "https://picsum.photos/seed/mkt_16/400/300"
+  },
+  {
+    "id": "17",
+    "name": "Jeans",
+    "category": "Clothing",
+    "price": 607,
+    "farmer": "Sattvic Life",
+    "rating": "4.0",
+    "img": "https://picsum.photos/seed/mkt_17/400/300"
+  },
+  {
+    "id": "18",
+    "name": "Jackets",
+    "category": "Clothing",
+    "price": 945,
+    "farmer": "Sustainable Co.",
+    "rating": "4.9",
+    "img": "https://picsum.photos/seed/mkt_18/400/300"
+  },
+  {
+    "id": "19",
+    "name": "Sweaters",
+    "category": "Clothing",
+    "price": 904,
+    "farmer": "Organic Roots",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_19/400/300"
+  },
+  {
+    "id": "20",
+    "name": "Dresses",
+    "category": "Clothing",
+    "price": 987,
+    "farmer": "Sattvic Life",
+    "rating": "3.8",
+    "img": "https://picsum.photos/seed/mkt_20/400/300"
+  },
+  {
+    "id": "21",
+    "name": "Skirts",
+    "category": "Clothing",
+    "price": 897,
+    "farmer": "Eco Basics",
+    "rating": "4.9",
+    "img": "https://picsum.photos/seed/mkt_21/400/300"
+  },
+  {
+    "id": "22",
+    "name": "Shorts",
+    "category": "Clothing",
+    "price": 1036,
+    "farmer": "Organic Roots",
+    "rating": "4.9",
+    "img": "https://picsum.photos/seed/mkt_22/400/300"
+  },
+  {
+    "id": "23",
+    "name": "Hoodies",
+    "category": "Clothing",
+    "price": 1033,
+    "farmer": "Nandi Farms",
+    "rating": "5.0",
+    "img": "https://picsum.photos/seed/mkt_23/400/300"
+  },
+  {
+    "id": "24",
+    "name": "Socks",
+    "category": "Clothing",
+    "price": 650,
+    "farmer": "Valley Organics",
+    "rating": "4.7",
+    "img": "https://picsum.photos/seed/mkt_24/400/300"
+  },
+  {
+    "id": "25",
+    "name": "Underwear",
+    "category": "Clothing",
+    "price": 790,
+    "farmer": "Natures Best",
+    "rating": "3.9",
+    "img": "https://picsum.photos/seed/mkt_25/400/300"
+  },
+  {
+    "id": "26",
+    "name": "Blazers",
+    "category": "Clothing",
+    "price": 980,
+    "farmer": "Natures Best",
+    "rating": "4.0",
+    "img": "https://picsum.photos/seed/mkt_26/400/300"
+  },
+  {
+    "id": "27",
+    "name": "Tracksuits",
+    "category": "Clothing",
+    "price": 643,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "4.9",
+    "img": "https://picsum.photos/seed/mkt_27/400/300"
+  },
+  {
+    "id": "28",
+    "name": "Pajamas",
+    "category": "Clothing",
+    "price": 625,
+    "farmer": "Green Acres",
+    "rating": "4.7",
+    "img": "https://picsum.photos/seed/mkt_28/400/300"
+  },
+  {
+    "id": "29",
+    "name": "Coats",
+    "category": "Clothing",
+    "price": 692,
+    "farmer": "Sustainable Co.",
+    "rating": "4.8",
+    "img": "https://picsum.photos/seed/mkt_29/400/300"
+  },
+  {
+    "id": "30",
+    "name": "Activewear",
+    "category": "Clothing",
+    "price": 669,
+    "farmer": "Pure Harvest",
+    "rating": "4.8",
+    "img": "https://picsum.photos/seed/mkt_30/400/300"
+  },
+  {
+    "id": "31",
+    "name": "Smartphone",
+    "category": "Gadgets",
+    "price": 29347,
+    "farmer": "Sattvic Life",
+    "rating": "3.6",
+    "img": "https://picsum.photos/seed/mkt_31/400/300"
+  },
+  {
+    "id": "32",
+    "name": "Laptop",
+    "category": "Gadgets",
+    "price": 7973,
+    "farmer": "Sustainable Co.",
+    "rating": "3.7",
+    "img": "https://picsum.photos/seed/mkt_32/400/300"
+  },
+  {
+    "id": "33",
+    "name": "Tablet",
+    "category": "Gadgets",
+    "price": 6935,
+    "farmer": "Green Acres",
+    "rating": "3.6",
+    "img": "https://picsum.photos/seed/mkt_33/400/300"
+  },
+  {
+    "id": "34",
+    "name": "Smartwatch",
+    "category": "Gadgets",
+    "price": 5984,
+    "farmer": "Natures Best",
+    "rating": "3.6",
+    "img": "https://picsum.photos/seed/mkt_34/400/300"
+  },
+  {
+    "id": "35",
+    "name": "Wireless earbuds",
+    "category": "Gadgets",
+    "price": 9885,
+    "farmer": "Earth Threads",
+    "rating": "3.7",
+    "img": "https://picsum.photos/seed/mkt_35/400/300"
+  },
+  {
+    "id": "36",
+    "name": "Bluetooth speaker",
+    "category": "Gadgets",
+    "price": 13457,
+    "farmer": "Organic Roots",
+    "rating": "4.4",
+    "img": "https://picsum.photos/seed/mkt_36/400/300"
+  },
+  {
+    "id": "37",
+    "name": "Power bank",
+    "category": "Gadgets",
+    "price": 32198,
+    "farmer": "Eco Basics",
+    "rating": "4.9",
+    "img": "https://picsum.photos/seed/mkt_37/400/300"
+  },
+  {
+    "id": "38",
+    "name": "Digital camera",
+    "category": "Gadgets",
+    "price": 20723,
+    "farmer": "Sustainable Co.",
+    "rating": "4.7",
+    "img": "https://picsum.photos/seed/mkt_38/400/300"
+  },
+  {
+    "id": "39",
+    "name": "Gaming console",
+    "category": "Gadgets",
+    "price": 27553,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "3.9",
+    "img": "https://picsum.photos/seed/mkt_39/400/300"
+  },
+  {
+    "id": "40",
+    "name": "E-reader",
+    "category": "Gadgets",
+    "price": 19442,
+    "farmer": "Nandi Farms",
+    "rating": "4.8",
+    "img": "https://picsum.photos/seed/mkt_40/400/300"
+  },
+  {
+    "id": "41",
+    "name": "Smart home hub",
+    "category": "Gadgets",
+    "price": 5995,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "4.4",
+    "img": "https://picsum.photos/seed/mkt_41/400/300"
+  },
+  {
+    "id": "42",
+    "name": "Fitness tracker",
+    "category": "Gadgets",
+    "price": 12597,
+    "farmer": "Pure Harvest",
+    "rating": "4.5",
+    "img": "https://picsum.photos/seed/mkt_42/400/300"
+  },
+  {
+    "id": "43",
+    "name": "Drone",
+    "category": "Gadgets",
+    "price": 14714,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "4.2",
+    "img": "https://picsum.photos/seed/mkt_43/400/300"
+  },
+  {
+    "id": "44",
+    "name": "VR headset",
+    "category": "Gadgets",
+    "price": 14226,
+    "farmer": "Earth Threads",
+    "rating": "3.7",
+    "img": "https://picsum.photos/seed/mkt_44/400/300"
+  },
+  {
+    "id": "45",
+    "name": "Portable hard drive",
+    "category": "Gadgets",
+    "price": 5479,
+    "farmer": "Ancient Grains",
+    "rating": "4.3",
+    "img": "https://picsum.photos/seed/mkt_45/400/300"
+  },
+  {
+    "id": "46",
+    "name": "Watches",
+    "category": "Accessories",
+    "price": 361,
+    "farmer": "Sattvic Life",
+    "rating": "4.9",
+    "img": "https://picsum.photos/seed/mkt_46/400/300"
+  },
+  {
+    "id": "47",
+    "name": "Sunglasses",
+    "category": "Accessories",
+    "price": 266,
+    "farmer": "Nandi Farms",
+    "rating": "3.9",
+    "img": "https://picsum.photos/seed/mkt_47/400/300"
+  },
+  {
+    "id": "48",
+    "name": "Belts",
+    "category": "Accessories",
+    "price": 219,
+    "farmer": "Nandi Farms",
+    "rating": "5.0",
+    "img": "https://picsum.photos/seed/mkt_48/400/300"
+  },
+  {
+    "id": "49",
+    "name": "Hats",
+    "category": "Accessories",
+    "price": 434,
+    "farmer": "Natures Best",
+    "rating": "3.7",
+    "img": "https://picsum.photos/seed/mkt_49/400/300"
+  },
+  {
+    "id": "50",
+    "name": "Scarves",
+    "category": "Accessories",
+    "price": 64,
+    "farmer": "Valley Organics",
+    "rating": "5.0",
+    "img": "https://picsum.photos/seed/mkt_50/400/300"
+  },
+  {
+    "id": "51",
+    "name": "Handbags",
+    "category": "Accessories",
+    "price": 459,
+    "farmer": "Eco Basics",
+    "rating": "4.5",
+    "img": "https://picsum.photos/seed/mkt_51/400/300"
+  },
+  {
+    "id": "52",
+    "name": "Wallets",
+    "category": "Accessories",
+    "price": 110,
+    "farmer": "Organic Roots",
+    "rating": "3.7",
+    "img": "https://picsum.photos/seed/mkt_52/400/300"
+  },
+  {
+    "id": "53",
+    "name": "Jewelry",
+    "category": "Accessories",
+    "price": 523,
+    "farmer": "Organic Roots",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_53/400/300"
+  },
+  {
+    "id": "54",
+    "name": "Hair clips",
+    "category": "Accessories",
+    "price": 225,
+    "farmer": "Organic Roots",
+    "rating": "4.8",
+    "img": "https://picsum.photos/seed/mkt_54/400/300"
+  },
+  {
+    "id": "55",
+    "name": "Gloves",
+    "category": "Accessories",
+    "price": 132,
+    "farmer": "Nandi Farms",
+    "rating": "4.0",
+    "img": "https://picsum.photos/seed/mkt_55/400/300"
+  },
+  {
+    "id": "56",
+    "name": "Backpacks",
+    "category": "Accessories",
+    "price": 131,
+    "farmer": "Nandi Farms",
+    "rating": "4.6",
+    "img": "https://picsum.photos/seed/mkt_56/400/300"
+  },
+  {
+    "id": "57",
+    "name": "Keychains",
+    "category": "Accessories",
+    "price": 105,
+    "farmer": "Green Acres",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_57/400/300"
+  },
+  {
+    "id": "58",
+    "name": "Ties",
+    "category": "Accessories",
+    "price": 303,
+    "farmer": "Pure Harvest",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_58/400/300"
+  },
+  {
+    "id": "59",
+    "name": "Bracelets",
+    "category": "Accessories",
+    "price": 190,
+    "farmer": "Sustainable Co.",
+    "rating": "4.6",
+    "img": "https://picsum.photos/seed/mkt_59/400/300"
+  },
+  {
+    "id": "60",
+    "name": "Rings",
+    "category": "Accessories",
+    "price": 418,
+    "farmer": "Organic Roots",
+    "rating": "3.9",
+    "img": "https://picsum.photos/seed/mkt_60/400/300"
+  },
+  {
+    "id": "61",
+    "name": "Carrot",
+    "category": "Vegetables",
+    "price": 80,
+    "farmer": "Ancient Grains",
+    "rating": "3.9",
+    "img": "https://picsum.photos/seed/mkt_61/400/300"
+  },
+  {
+    "id": "62",
+    "name": "Broccoli",
+    "category": "Vegetables",
+    "price": 88,
+    "farmer": "Valley Organics",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_62/400/300"
+  },
+  {
+    "id": "63",
+    "name": "Spinach",
+    "category": "Vegetables",
+    "price": 145,
+    "farmer": "Nandi Farms",
+    "rating": "4.7",
+    "img": "https://picsum.photos/seed/mkt_63/400/300"
+  },
+  {
+    "id": "64",
+    "name": "Potato",
+    "category": "Vegetables",
+    "price": 106,
+    "farmer": "Eco Basics",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_64/400/300"
+  },
+  {
+    "id": "65",
+    "name": "Onion",
+    "category": "Vegetables",
+    "price": 130,
+    "farmer": "Eco Basics",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_65/400/300"
+  },
+  {
+    "id": "66",
+    "name": "Tomato",
+    "category": "Vegetables",
+    "price": 160,
+    "farmer": "Green Acres",
+    "rating": "4.5",
+    "img": "https://picsum.photos/seed/mkt_66/400/300"
+  },
+  {
+    "id": "67",
+    "name": "Cucumber",
+    "category": "Vegetables",
+    "price": 36,
+    "farmer": "Valley Organics",
+    "rating": "3.5",
+    "img": "https://picsum.photos/seed/mkt_67/400/300"
+  },
+  {
+    "id": "68",
+    "name": "Cabbage",
+    "category": "Vegetables",
+    "price": 93,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_68/400/300"
+  },
+  {
+    "id": "69",
+    "name": "Cauliflower",
+    "category": "Vegetables",
+    "price": 165,
+    "farmer": "Ancient Grains",
+    "rating": "3.6",
+    "img": "https://picsum.photos/seed/mkt_69/400/300"
+  },
+  {
+    "id": "70",
+    "name": "Bell pepper",
+    "category": "Vegetables",
+    "price": 123,
+    "farmer": "Organic Roots",
+    "rating": "4.6",
+    "img": "https://picsum.photos/seed/mkt_70/400/300"
+  },
+  {
+    "id": "71",
+    "name": "Eggplant",
+    "category": "Vegetables",
+    "price": 121,
+    "farmer": "Green Acres",
+    "rating": "3.7",
+    "img": "https://picsum.photos/seed/mkt_71/400/300"
+  },
+  {
+    "id": "72",
+    "name": "Zucchini",
+    "category": "Vegetables",
+    "price": 33,
+    "farmer": "Earth Threads",
+    "rating": "3.6",
+    "img": "https://picsum.photos/seed/mkt_72/400/300"
+  },
+  {
+    "id": "73",
+    "name": "Lettuce",
+    "category": "Vegetables",
+    "price": 157,
+    "farmer": "Valley Organics",
+    "rating": "4.7",
+    "img": "https://picsum.photos/seed/mkt_73/400/300"
+  },
+  {
+    "id": "74",
+    "name": "Peas",
+    "category": "Vegetables",
+    "price": 26,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "4.9",
+    "img": "https://picsum.photos/seed/mkt_74/400/300"
+  },
+  {
+    "id": "75",
+    "name": "Corn",
+    "category": "Vegetables",
+    "price": 91,
+    "farmer": "Sustainable Co.",
+    "rating": "4.5",
+    "img": "https://picsum.photos/seed/mkt_75/400/300"
+  },
+  {
+    "id": "76",
+    "name": "Apple",
+    "category": "Fruits",
+    "price": 64,
+    "farmer": "Nandi Farms",
+    "rating": "4.6",
+    "img": "https://picsum.photos/seed/mkt_76/400/300"
+  },
+  {
+    "id": "77",
+    "name": "Banana",
+    "category": "Fruits",
+    "price": 101,
+    "farmer": "Organic Roots",
+    "rating": "4.5",
+    "img": "https://picsum.photos/seed/mkt_77/400/300"
+  },
+  {
+    "id": "78",
+    "name": "Orange",
+    "category": "Fruits",
+    "price": 34,
+    "farmer": "Pure Harvest",
+    "rating": "4.6",
+    "img": "https://picsum.photos/seed/mkt_78/400/300"
+  },
+  {
+    "id": "79",
+    "name": "Mango",
+    "category": "Fruits",
+    "price": 164,
+    "farmer": "Pure Harvest",
+    "rating": "4.7",
+    "img": "https://picsum.photos/seed/mkt_79/400/300"
+  },
+  {
+    "id": "80",
+    "name": "Grapes",
+    "category": "Fruits",
+    "price": 20,
+    "farmer": "Eco Basics",
+    "rating": "3.8",
+    "img": "https://picsum.photos/seed/mkt_80/400/300"
+  },
+  {
+    "id": "81",
+    "name": "Pineapple",
+    "category": "Fruits",
+    "price": 32,
+    "farmer": "Valley Organics",
+    "rating": "4.0",
+    "img": "https://picsum.photos/seed/mkt_81/400/300"
+  },
+  {
+    "id": "82",
+    "name": "Strawberry",
+    "category": "Fruits",
+    "price": 79,
+    "farmer": "Natures Best",
+    "rating": "4.6",
+    "img": "https://picsum.photos/seed/mkt_82/400/300"
+  },
+  {
+    "id": "83",
+    "name": "Watermelon",
+    "category": "Fruits",
+    "price": 143,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "3.9",
+    "img": "https://picsum.photos/seed/mkt_83/400/300"
+  },
+  {
+    "id": "84",
+    "name": "Blueberry",
+    "category": "Fruits",
+    "price": 122,
+    "farmer": "Nandi Farms",
+    "rating": "4.4",
+    "img": "https://picsum.photos/seed/mkt_84/400/300"
+  },
+  {
+    "id": "85",
+    "name": "Peach",
+    "category": "Fruits",
+    "price": 151,
+    "farmer": "Sattvic Life",
+    "rating": "4.3",
+    "img": "https://picsum.photos/seed/mkt_85/400/300"
+  },
+  {
+    "id": "86",
+    "name": "Pear",
+    "category": "Fruits",
+    "price": 96,
+    "farmer": "Sattvic Life",
+    "rating": "3.6",
+    "img": "https://picsum.photos/seed/mkt_86/400/300"
+  },
+  {
+    "id": "87",
+    "name": "Cherry",
+    "category": "Fruits",
+    "price": 130,
+    "farmer": "Organic Roots",
+    "rating": "5.0",
+    "img": "https://picsum.photos/seed/mkt_87/400/300"
+  },
+  {
+    "id": "88",
+    "name": "Kiwi",
+    "category": "Fruits",
+    "price": 108,
+    "farmer": "Pure Harvest",
+    "rating": "4.4",
+    "img": "https://picsum.photos/seed/mkt_88/400/300"
+  },
+  {
+    "id": "89",
+    "name": "Papaya",
+    "category": "Fruits",
+    "price": 120,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "4.3",
+    "img": "https://picsum.photos/seed/mkt_89/400/300"
+  },
+  {
+    "id": "90",
+    "name": "Pomegranate",
+    "category": "Fruits",
+    "price": 55,
+    "farmer": "Earth Threads",
+    "rating": "4.8",
+    "img": "https://picsum.photos/seed/mkt_90/400/300"
+  },
+  {
+    "id": "91",
+    "name": "Dragon Fruit",
+    "category": "Fruits",
+    "price": 46,
+    "farmer": "Valley Organics",
+    "rating": "5.0",
+    "img": "https://picsum.photos/seed/mkt_91/400/300"
+  },
+  {
+    "id": "92",
+    "name": "Guava",
+    "category": "Fruits",
+    "price": 62,
+    "farmer": "Pure Harvest",
+    "rating": "4.2",
+    "img": "https://picsum.photos/seed/mkt_92/400/300"
+  },
+  {
+    "id": "93",
+    "name": "Lychee",
+    "category": "Fruits",
+    "price": 120,
+    "farmer": "Ancient Grains",
+    "rating": "4.2",
+    "img": "https://picsum.photos/seed/mkt_93/400/300"
+  },
+  {
+    "id": "94",
+    "name": "Basil",
+    "category": "Herbs",
+    "price": 153,
+    "farmer": "Natures Best",
+    "rating": "4.6",
+    "img": "https://picsum.photos/seed/mkt_94/400/300"
+  },
+  {
+    "id": "95",
+    "name": "Mint",
+    "category": "Herbs",
+    "price": 50,
+    "farmer": "Pure Harvest",
+    "rating": "4.3",
+    "img": "https://picsum.photos/seed/mkt_95/400/300"
+  },
+  {
+    "id": "96",
+    "name": "Parsley",
+    "category": "Herbs",
+    "price": 50,
+    "farmer": "Valley Organics",
+    "rating": "4.5",
+    "img": "https://picsum.photos/seed/mkt_96/400/300"
+  },
+  {
+    "id": "97",
+    "name": "Cilantro",
+    "category": "Herbs",
+    "price": 124,
+    "farmer": "Eco Basics",
+    "rating": "4.0",
+    "img": "https://picsum.photos/seed/mkt_97/400/300"
+  },
+  {
+    "id": "98",
+    "name": "Thyme",
+    "category": "Herbs",
+    "price": 20,
+    "farmer": "Nandi Farms",
+    "rating": "4.4",
+    "img": "https://picsum.photos/seed/mkt_98/400/300"
+  },
+  {
+    "id": "99",
+    "name": "Rosemary",
+    "category": "Herbs",
+    "price": 132,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "4.3",
+    "img": "https://picsum.photos/seed/mkt_99/400/300"
+  },
+  {
+    "id": "100",
+    "name": "Oregano",
+    "category": "Herbs",
+    "price": 43,
+    "farmer": "Organic Roots",
+    "rating": "3.8",
+    "img": "https://picsum.photos/seed/mkt_100/400/300"
+  },
+  {
+    "id": "101",
+    "name": "Sage",
+    "category": "Herbs",
+    "price": 166,
+    "farmer": "Green Acres",
+    "rating": "3.7",
+    "img": "https://picsum.photos/seed/mkt_101/400/300"
+  },
+  {
+    "id": "102",
+    "name": "Dill",
+    "category": "Herbs",
+    "price": 57,
+    "farmer": "Ancient Grains",
+    "rating": "5.0",
+    "img": "https://picsum.photos/seed/mkt_102/400/300"
+  },
+  {
+    "id": "103",
+    "name": "Chives",
+    "category": "Herbs",
+    "price": 25,
+    "farmer": "Organic Roots",
+    "rating": "4.8",
+    "img": "https://picsum.photos/seed/mkt_103/400/300"
+  },
+  {
+    "id": "104",
+    "name": "Tarragon",
+    "category": "Herbs",
+    "price": 93,
+    "farmer": "Sustainable Co.",
+    "rating": "4.5",
+    "img": "https://picsum.photos/seed/mkt_104/400/300"
+  },
+  {
+    "id": "105",
+    "name": "Lemongrass",
+    "category": "Herbs",
+    "price": 69,
+    "farmer": "Earth Threads",
+    "rating": "3.9",
+    "img": "https://picsum.photos/seed/mkt_105/400/300"
+  },
+  {
+    "id": "106",
+    "name": "Bay leaves",
+    "category": "Herbs",
+    "price": 131,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "4.2",
+    "img": "https://picsum.photos/seed/mkt_106/400/300"
+  },
+  {
+    "id": "107",
+    "name": "Fennel",
+    "category": "Herbs",
+    "price": 167,
+    "farmer": "Nandi Farms",
+    "rating": "4.2",
+    "img": "https://picsum.photos/seed/mkt_107/400/300"
+  },
+  {
+    "id": "108",
+    "name": "Marjoram",
+    "category": "Herbs",
+    "price": 154,
+    "farmer": "Earth Threads",
+    "rating": "3.6",
+    "img": "https://picsum.photos/seed/mkt_108/400/300"
+  },
+  {
+    "id": "109",
+    "name": "Rice",
+    "category": "Grains",
+    "price": 397,
+    "farmer": "Eco Basics",
+    "rating": "4.2",
+    "img": "https://picsum.photos/seed/mkt_109/400/300"
+  },
+  {
+    "id": "110",
+    "name": "Wheat",
+    "category": "Grains",
+    "price": 119,
+    "farmer": "Sattvic Life",
+    "rating": "3.8",
+    "img": "https://picsum.photos/seed/mkt_110/400/300"
+  },
+  {
+    "id": "111",
+    "name": "Oats",
+    "category": "Grains",
+    "price": 383,
+    "farmer": "Earth Threads",
+    "rating": "4.8",
+    "img": "https://picsum.photos/seed/mkt_111/400/300"
+  },
+  {
+    "id": "112",
+    "name": "Barley",
+    "category": "Grains",
+    "price": 384,
+    "farmer": "Pure Harvest",
+    "rating": "4.5",
+    "img": "https://picsum.photos/seed/mkt_112/400/300"
+  },
+  {
+    "id": "113",
+    "name": "Cornmeal",
+    "category": "Grains",
+    "price": 280,
+    "farmer": "Eco Basics",
+    "rating": "4.3",
+    "img": "https://picsum.photos/seed/mkt_113/400/300"
+  },
+  {
+    "id": "114",
+    "name": "Quinoa",
+    "category": "Grains",
+    "price": 253,
+    "farmer": "Nandi Farms",
+    "rating": "3.6",
+    "img": "https://picsum.photos/seed/mkt_114/400/300"
+  },
+  {
+    "id": "115",
+    "name": "Millet",
+    "category": "Grains",
+    "price": 295,
+    "farmer": "Green Acres",
+    "rating": "3.7",
+    "img": "https://picsum.photos/seed/mkt_115/400/300"
+  },
+  {
+    "id": "116",
+    "name": "Rye",
+    "category": "Grains",
+    "price": 399,
+    "farmer": "Eco Basics",
+    "rating": "4.5",
+    "img": "https://picsum.photos/seed/mkt_116/400/300"
+  },
+  {
+    "id": "117",
+    "name": "Sorghum",
+    "category": "Grains",
+    "price": 397,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "4.9",
+    "img": "https://picsum.photos/seed/mkt_117/400/300"
+  },
+  {
+    "id": "118",
+    "name": "Buckwheat",
+    "category": "Grains",
+    "price": 199,
+    "farmer": "Ancient Grains",
+    "rating": "3.8",
+    "img": "https://picsum.photos/seed/mkt_118/400/300"
+  },
+  {
+    "id": "119",
+    "name": "Bulgur",
+    "category": "Grains",
+    "price": 49,
+    "farmer": "Nandi Farms",
+    "rating": "4.6",
+    "img": "https://picsum.photos/seed/mkt_119/400/300"
+  },
+  {
+    "id": "120",
+    "name": "Farro",
+    "category": "Grains",
+    "price": 269,
+    "farmer": "Green Acres",
+    "rating": "4.9",
+    "img": "https://picsum.photos/seed/mkt_120/400/300"
+  },
+  {
+    "id": "121",
+    "name": "Amaranth",
+    "category": "Grains",
+    "price": 314,
+    "farmer": "Earth Threads",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_121/400/300"
+  },
+  {
+    "id": "122",
+    "name": "Spelt",
+    "category": "Grains",
+    "price": 286,
+    "farmer": "Sattvic Life",
+    "rating": "4.6",
+    "img": "https://picsum.photos/seed/mkt_122/400/300"
+  },
+  {
+    "id": "123",
+    "name": "Teff",
+    "category": "Grains",
+    "price": 50,
+    "farmer": "Ancient Grains",
+    "rating": "4.5",
+    "img": "https://picsum.photos/seed/mkt_123/400/300"
+  },
+  {
+    "id": "124",
+    "name": "Milk",
+    "category": "Dairy",
+    "price": 176,
+    "farmer": "Earth Threads",
+    "rating": "3.7",
+    "img": "https://picsum.photos/seed/mkt_124/400/300"
+  },
+  {
+    "id": "125",
+    "name": "Cheese",
+    "category": "Dairy",
+    "price": 354,
+    "farmer": "Nandi Farms",
+    "rating": "4.4",
+    "img": "https://picsum.photos/seed/mkt_125/400/300"
+  },
+  {
+    "id": "126",
+    "name": "Butter",
+    "category": "Dairy",
+    "price": 70,
+    "farmer": "Nandi Farms",
+    "rating": "4.0",
+    "img": "https://picsum.photos/seed/mkt_126/400/300"
+  },
+  {
+    "id": "127",
+    "name": "Yogurt",
+    "category": "Dairy",
+    "price": 415,
+    "farmer": "Sustainable Co.",
+    "rating": "4.7",
+    "img": "https://picsum.photos/seed/mkt_127/400/300"
+  },
+  {
+    "id": "128",
+    "name": "Cream",
+    "category": "Dairy",
+    "price": 53,
+    "farmer": "Nandi Farms",
+    "rating": "4.2",
+    "img": "https://picsum.photos/seed/mkt_128/400/300"
+  },
+  {
+    "id": "129",
+    "name": "Ice cream",
+    "category": "Dairy",
+    "price": 340,
+    "farmer": "Organic Roots",
+    "rating": "4.3",
+    "img": "https://picsum.photos/seed/mkt_129/400/300"
+  },
+  {
+    "id": "130",
+    "name": "Cottage cheese",
+    "category": "Dairy",
+    "price": 408,
+    "farmer": "Organic Roots",
+    "rating": "4.1",
+    "img": "https://picsum.photos/seed/mkt_130/400/300"
+  },
+  {
+    "id": "131",
+    "name": "Sour cream",
+    "category": "Dairy",
+    "price": 432,
+    "farmer": "Nandi Farms",
+    "rating": "4.3",
+    "img": "https://picsum.photos/seed/mkt_131/400/300"
+  },
+  {
+    "id": "132",
+    "name": "Buttermilk",
+    "category": "Dairy",
+    "price": 177,
+    "farmer": "Organic Roots",
+    "rating": "3.7",
+    "img": "https://picsum.photos/seed/mkt_132/400/300"
+  },
+  {
+    "id": "133",
+    "name": "Ghee",
+    "category": "Dairy",
+    "price": 169,
+    "farmer": "Green Acres",
+    "rating": "5.0",
+    "img": "https://picsum.photos/seed/mkt_133/400/300"
+  },
+  {
+    "id": "134",
+    "name": "Cream cheese",
+    "category": "Dairy",
+    "price": 431,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "3.8",
+    "img": "https://picsum.photos/seed/mkt_134/400/300"
+  },
+  {
+    "id": "135",
+    "name": "Condensed milk",
+    "category": "Dairy",
+    "price": 269,
+    "farmer": "Organic Roots",
+    "rating": "4.4",
+    "img": "https://picsum.photos/seed/mkt_135/400/300"
+  },
+  {
+    "id": "136",
+    "name": "Evaporated milk",
+    "category": "Dairy",
+    "price": 279,
+    "farmer": "Sustainable Co.",
+    "rating": "4.4",
+    "img": "https://picsum.photos/seed/mkt_136/400/300"
+  },
+  {
+    "id": "137",
+    "name": "Kefir",
+    "category": "Dairy",
+    "price": 369,
+    "farmer": "Nandi Farms",
+    "rating": "3.7",
+    "img": "https://picsum.photos/seed/mkt_137/400/300"
+  },
+  {
+    "id": "138",
+    "name": "Ricotta",
+    "category": "Dairy",
+    "price": 331,
+    "farmer": "Sun-Kissed Farm",
+    "rating": "3.7",
+    "img": "https://picsum.photos/seed/mkt_138/400/300"
+  }
 ];
 
 // Per-card qty state
@@ -253,13 +1479,23 @@ export const initMarket = async (container) => {
                     description: "GreenTrack Secure Checkout",
                     handler: async function (response) {
                         try {
+                            // Realistic payment simulation
+                            const res = await fetch('/api/market/order', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ total, items: cart.map(i => i.id) })
+                            });
+                            const orderData = await res.json();
+                            if (!orderData.success) throw new Error(orderData.error || 'Payment failed');
+                            
+                            // Save Order to Firestore
                             if (currentUser) {
                                 await firebaseDB.addDocument('market_orders', {
                                     userId: currentUser.uid,
                                     items: cart.map(i => ({ id: i.id, name: i.name, price: i.price, qty: i.qty })),
                                     total,
                                     status: 'paid',
-                                    paymentId: response.razorpay_payment_id,
+                                    orderId: orderData.orderId,
                                     timestamp: new Date().toISOString()
                                 });
                             }
